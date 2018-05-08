@@ -13,13 +13,14 @@ class CreateInfraccionesTable extends Migration {
 	public function up() {
 		Schema::create('infracciones', function (Blueprint $table) {
 			$table->increments('id_infraccion');
-			$table->primary('folio');
+			$table->string('folio');
+			//$table->primary('folio');
 			$table->time('fecha');
 			$table->text('descripcion');
 			$table->string('situacion');
 			$table->string('fundamento');
 			$table->string('sancion');
-			$table->śtring('motivo_infraccion');
+			$table->string('motivo_infraccion');
 			$table->tinyInteger('pagada');
 			$table->unsignedInteger('vehiculo_id_vehiculo');
 

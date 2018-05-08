@@ -16,9 +16,9 @@ class CreateServicioMantenimientoTable extends Migration {
 			$table->time('fecha_servicio');
 			$table->string('motivo');
 			$table->integer('monto_servicio');
-
+                        $table->integer('vehiculo_id_vehiculo')->unsigned();
 			$table->foreign('vehiculo_id_vehiculo')->references('id_vehiculo')->on('vehiculo')->onDelete('cascade');
-
+                        
 			$table->timestamps();
 		});
 	}

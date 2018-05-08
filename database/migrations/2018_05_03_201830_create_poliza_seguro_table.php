@@ -13,7 +13,8 @@ class CreatePolizaSeguroTable extends Migration {
 	public function up() {
 		Schema::create('poliza_seguro', function (Blueprint $table) {
 			$table->increments('id_poliza_seguro');
-			$table->primary('numero_poliza');
+			//$table->primary('numero_poliza');
+			$table->string('numero_poliza');
 			$table->date('fecha_emision');
 			$table->date('fecha_pago');
 			$table->unsignedInteger('vehiculo_id_vehiculo');
