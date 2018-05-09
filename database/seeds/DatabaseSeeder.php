@@ -11,6 +11,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(CtlgAseguraSeeder::class);
+        $this->call(CtlgHologramasSeeder::class);
+        $this->call(CtlgMarcasSeeder::class);
+        $this->call(CtlgModelosSeeder::class);
+        $this->call(CtlgTipoCoberturaSeeder::class);
+        $this->call(CtlgTipoPagoSeeder::class);
+        $this->call(NoticiasSeeder::class);
+        $this->call(UsuarioSeeder::class);
+        $this->call(VehiculoSeeder::class);
+        $this->call(InfraccionSeeder::class);
+        $this->call(ServicioMantenimientoSeeder::class);
+        $this->call(VerificacionSeeder::class);
+        $this->call(PolizaSeguroSeeder::class);
     }
 }
