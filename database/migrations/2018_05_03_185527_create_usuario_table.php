@@ -15,7 +15,7 @@ class CreateUsuarioTable extends Migration {
 			$table->increments('id_usuario');
 			$table->string('nombre');
 			$table->string('email')->unique();
-			$table->string('passworld');
+			$table->string('password');
 			$table->string('url_imagen');
 			$table->string('sesion');
 			$table->unsignedInteger('noticias_id_noticias');

@@ -3,6 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Vehiculo;
+use App\CtlgAsegura;
+use App\CtlgTipoPago;
+use App\CtlgTipoCobertura;
 
 class PolizaSeguro extends Model
 {
@@ -19,6 +23,11 @@ class PolizaSeguro extends Model
     protected $guarded = [
         'id_poliza_seguro'
     ];
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+    
     public function vehiculo()
     {
         return $this->belongsTo('App\Vehiculo');

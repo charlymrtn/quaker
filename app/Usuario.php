@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Vehiculo;
+use App\Noticias;
 
 class Usuario extends Model
 {
@@ -18,6 +20,11 @@ class Usuario extends Model
     protected $guarded = [
         'id_usuario'
     ];
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+    
     public function vehiculo()
     {
         return $this->hasMany('App\Vehiculo');

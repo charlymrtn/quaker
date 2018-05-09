@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Vehiculo;
 
 class Infraccion extends Model
 {
@@ -21,7 +22,11 @@ class Infraccion extends Model
     protected $guarded = [
         'id_infraccion'
     ];
-     public function vehiculo()
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+    public function vehiculo()
     {
         return $this->belongsTo('App\Vehiculo');
     }

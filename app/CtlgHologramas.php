@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Vehiculo;
 
 class CtlgHologramas extends Model
 {

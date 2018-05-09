@@ -3,6 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Usuario;
+use App\CtlgMarcas;
+use App\CtlgModelos;
+use App\CtlgHologramas;
+use App\ServicioMantenimiento;
+use App\Infraccion;
+use App\Verificacion;
+use App\PolizaSeguro;
 
 class Vehiculo extends Model
 {
@@ -17,6 +25,10 @@ class Vehiculo extends Model
     ];
     protected $guarded = [
         'id_vehiculo'
+    ];
+    protected $dates = [
+        'created_at',
+        'updated_at',
     ];
     
     public function usuario()

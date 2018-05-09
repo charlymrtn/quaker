@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\PolizaSeguro;
 
 class CtlgTipoPago extends Model
 {
@@ -31,7 +32,8 @@ class CtlgTipoPago extends Model
         'updated_at',
     ];
 
-    public function vehiculo(){
-        return $this->hasMany(Vehiculo::class);
+    public function polizaSeguro()
+    {
+        return $this->belongsTo(PolizaSeguro::class);
     }
 }
