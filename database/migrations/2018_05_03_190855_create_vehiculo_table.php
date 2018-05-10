@@ -15,6 +15,7 @@ class CreateVehiculoTable extends Migration {
 			$table->increments('id_vehiculo');
 			$table->string('alias');
 			$table->string('placas');
+			$table->string('estado');
 			$table->unsignedInteger('usuario_id_usuario');
 			$table->unsignedInteger('ctlg_marcas_id_ctlg_marcas');
 			$table->unsignedInteger('ctlg_modelos_id_ctlg_modelos');
