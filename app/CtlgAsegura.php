@@ -34,6 +34,6 @@ class CtlgAsegura extends Model
     
     public function polizaSeguro()
     {
-        return $this->belongsTo('App\PolizaSeguro');
+        return $this->belongsTo(PolizaSeguro::class);
     }
 }

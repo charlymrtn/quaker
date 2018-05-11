@@ -30,18 +30,18 @@ class PolizaSeguro extends Model
     
     public function vehiculo()
     {
-        return $this->belongsTo('App\Vehiculo');
+        return $this->belongsTo(Vehiculo::class);
     }
     public function ctlgAseguradoras()
     {
-        return $this->hasOne('App\CtlgAsegura');
+        return $this->hasOne(CtlgAsegura::class);
     }
     public function ctlgTipoPago()
     {
-        return $this->hasOne('App\CtlgTipoPago');
+        return $this->hasOne(CtlgTipoPago::class);
     }
     public function ctlgTipoCobertura()
     {
-        return $this->hasOne('App\CtlgTipoCobertura');
+        return $this->hasOne(CtlgTipoCobertura::class);
     }
 }
