@@ -24,5 +24,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ServicioMantenimientoSeeder::class);
         $this->call(VerificacionSeeder::class);
         $this->call(PolizaSeguroSeeder::class);
+        $this->call(CalidadAireSeeder::class);
+        $this->call(UltimoPinUbicacionSeeder::class);
+        $this->call(UbicacionParkimetroSeeder::class);
+        $this->call(FotoSeeder::class);
+        $this->call(HorariosSeeder::class);
+        $this->call(CtlgHoyNoCirculaSeeder::class);
+        $this->call(HoyNoCirculaSeeder::class);
     }
 }
