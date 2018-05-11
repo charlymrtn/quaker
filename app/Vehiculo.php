@@ -11,6 +11,8 @@ use App\ServicioMantenimiento;
 use App\Infraccion;
 use App\Verificacion;
 use App\PolizaSeguro;
+use App\CtlgSubMarca;
+use App\Foto;
 
 class Vehiculo extends Model
 {
@@ -33,34 +35,43 @@ class Vehiculo extends Model
     
     public function usuario()
     {
-        return $this->belongsTo('App\Usuario');
+        return $this->belongsTo(Usuario::class);
     }
     public function catalogoMarcas()
     {
-        return $this->belongsTo('App\CtlgMarcas');
+        return $this->belongsTo(CtlgMarcas::class);
     }
     public function modelos()
     {
-        return $this->belongsTo('App\CtlgModelos');
+        return $this->belongsTo(CtlgModelos::class);
     }
     public function catalogoHologramas()
     {
-        return $this->belongsTo('App\CtlgHologramas');
+        return $this->belongsTo(CtlgHologramas::class);
     }
     public function serviciosMantenimientos()
     {
-        return $this->hasMany('App\ServicioMantenimiento');
+        return $this->hasMany(ServicioMantenimiento::class);
     }
     public function infracciones()
     {
-        return $this->hasMany('App\Infraccion');
+        return $this->hasMany(Infraccion::class);
     } 
     public function verificaciones()
     {
-        return $this->hasMany('App\Verificacion');
+        return $this->hasMany(Verificacion::class);
     } 
     public function polizaSeguro()
     {
-        return $this->hasMany('App\PolizaSeguro');
+        return $this->hasMany(PolizaSeguro::class);
     } 
+    public function ctlgSubMarca()
+    {
+        return $this->belongsTo(CtlgSubMarca::class);
+    }
+    public function foto()
+    {
+       return $this->hasMany(Foto::class);
+    }
+    
 }

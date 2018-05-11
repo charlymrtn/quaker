@@ -13,7 +13,7 @@ class CreateUltimoPinUbicacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('calidad_ultimo_pin_ubicacion', function (Blueprint $table) {
+        Schema::create('ultimo_pin_ubicacion', function (Blueprint $table) {
             $table->increments('id_ultimo_pin_ubicacion');
             $table->string('latitud');
             $table->string('longitud');

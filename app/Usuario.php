@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Vehiculo;
 use App\Noticias;
+use App\CalidadAire;
+use App\UltimoPinUbicacion;
+use App\UbicacionParkimetro;
 
 class Usuario extends Model
 {
@@ -27,10 +30,22 @@ class Usuario extends Model
     
     public function vehiculo()
     {
-        return $this->hasMany('App\Vehiculo');
+        return $this->hasMany(Vehiculo::class);
     }
     public function noticias()
     {
-        return $this->belongsTo('App\Noticia');
+        return $this->belongsTo(Noticias::class);
+    }
+    public function calidadAire()
+    {
+        return $this->hasMany(CalidadAire::class);
+    }
+    public function ultimoPinUbicacion()
+    {
+       return $this->hasMany(UltimoPinUbicacion::class);
+    }
+    public function ubicacionParkimetro()
+    {
+       return $this->hasOne(UbicacionParkimetro::class);
     }
 }

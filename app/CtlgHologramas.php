@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Vehiculo;
+use App\HoyNoCircula;
 
 class CtlgHologramas extends Model
 {
@@ -34,5 +35,8 @@ class CtlgHologramas extends Model
 
     public function vehiculo(){
         return $this->hasMany(Vehiculo::class);
+    }
+    public function hoyNoCircula(){
+        return $this->hasMany(HoyNoCircula::class);
     }
 }

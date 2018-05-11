@@ -24,6 +24,6 @@ class ServicioMantenimiento extends Model
     
     public function vehiculo()
     {
-        return $this->belongsTo('App\Vehiculo');
+        return $this->belongsTo(Vehiculo::class);
     }
 }
