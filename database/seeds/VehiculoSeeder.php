@@ -19,6 +19,7 @@ class VehiculoSeeder extends Seeder
             DB::table('vehiculo')->insert([
                 'alias'=>$faker->text(8),
                 'placas'=>$faker->sentence(6),
+                'estado'=>$faker->name,
                 'usuario_id_usuario'=> rand(1, 10),            
                 'ctlg_marcas_id_ctlg_marcas'=> rand(1, 10),               
                 'ctlg_modelos_id_ctlg_modelos'=> rand(1, 10),               
