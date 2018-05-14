@@ -19,7 +19,7 @@ class CreateUbicacionParkimetroTable extends Migration
             $table->string('longitud');
             $table->unsignedInteger('usuario_id_usuario');
 
-            $table->foreign('usuario_id_usuario')->references('id_usuario')->on('usuario')->onDelete('cascade');
+            $table->foreign('usuario_id_usuario')->references('id_usuario')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

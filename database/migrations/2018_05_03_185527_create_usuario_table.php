@@ -11,16 +11,14 @@ class CreateUsuarioTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('usuario', function (Blueprint $table) {
+		Schema::create('users', function (Blueprint $table) {
 			$table->increments('id_usuario');
 			$table->string('nombre');
 			$table->string('email')->unique();
 			$table->string('password');
+			$table->string('api_token', 60)->unique();
+            $table->rememberToken();
 			$table->string('url_imagen');
-			$table->string('sesion');
-			$table->unsignedInteger('noticias_id_noticias');
-
-			$table->foreign('noticias_id_noticias')->references('id_noticias')->on('noticias');
 			$table->timestamps();
 		});
 	}

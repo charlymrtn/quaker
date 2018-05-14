@@ -15,12 +15,12 @@ class UsuarioSeeder extends Seeder {
     public function run() {
         $faker = Faker::create();
         for ($x = 1; $x < 11; $x++) {
-            DB::table('usuario')->insert([
+            DB::table('users')->insert([
                 'nombre' => $faker->name,
                 'email' => $faker->email,
                 'password' => bcrypt('secret'),
+                'api_token' => str_random(60),
                 'url_imagen' => $faker->url,
-                'sesion' => md5($faker->randomNumber()),
                 'noticias_id_noticias' => rand(1, 10),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
