@@ -14,6 +14,14 @@ class UbicacionParkimetro extends Model
         'longitud',
         'usuario_id_usuario',
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_ubicacion_parkimetro'
+    ];
     protected $dates = [
         'created_at',
         'updated_at'

@@ -27,6 +27,9 @@ class CtlgAsegura extends Model
     protected $fillable = [
         'descripcion_asegura',
     ];
+    protected $guarded = [
+        'id_ctlg_asegura'
+    ];
     protected $dates = [
         'created_at',
         'updated_at',

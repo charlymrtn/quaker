@@ -11,6 +11,7 @@ use App\CtlgTipoCobertura;
 class PolizaSeguro extends Model
 {
     protected $table = 'poliza_seguro';
+    protected $primaryKey = 'id_poliza_seguro';
     protected $fillable = [
         'numero_poliza',
         'fecha_emision',

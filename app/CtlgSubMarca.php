@@ -12,6 +12,14 @@ class CtlgSubMarca extends Model
     protected $fillable = [
         'nombre_sub_marca',
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_ctlg_sub_marca'
+    ];
     protected $dates = [
         'created_at',
         'update_at'

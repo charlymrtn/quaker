@@ -27,6 +27,14 @@ class CtlgTipoPago extends Model
     protected $fillable = [
         'descripcion_tipo_pago',
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_ctlg_tipo_pago'
+    ];
     protected $dates = [
         'created_at',
         'updated_at',

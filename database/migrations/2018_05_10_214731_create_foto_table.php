@@ -14,7 +14,7 @@ class CreateFotoTable extends Migration
     public function up()
     {
         Schema::create('foto', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_foto');
             $table->string('ubicacion');
             $table->unsignedInteger('vehiculo_id_vehiculo');
 

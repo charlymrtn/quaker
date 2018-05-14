@@ -28,6 +28,10 @@ class CalidadAire extends Model
         'aqs',
         'usuario_id_usuario',
     ];
+
+    protected $guarded = [
+        'id_calidad_aire'
+    ];
     protected $dates = [
         'created_at',
         'updated_at',

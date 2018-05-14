@@ -8,6 +8,7 @@ use App\Vehiculo;
 class ServicioMantenimiento extends Model
 {
     protected $table = 'servicio_mantenimiento';
+    protected $primaryKey = 'id_servicio_mantenimiento';
     protected $fillable = [
         'fecha_servicio', 
         'motivo',

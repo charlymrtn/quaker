@@ -8,10 +8,18 @@ use App\Vehiculo;
 class Foto extends Model
 {
     protected $table = 'foto';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_foto';
     protected $fillable = [
         'ubicacion',
         'vehiculo_id_vehiculo'
+    ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_foto'
     ];
     protected $dates = [
         'created_at',

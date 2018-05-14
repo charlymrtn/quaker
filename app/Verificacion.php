@@ -8,6 +8,7 @@ use App\Vehiculo;
 class Verificacion extends Model
 {
     protected $table = 'verificacion';
+    protected $primaryKey = 'id_verificacion';
     protected $fillable = [
         'fecha_verificacion',
         'cantidad',

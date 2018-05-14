@@ -14,6 +14,14 @@ class UltimoPinUbicacion extends Model
         'longitud',
         'usuario_id_usuario'
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_ultimo_pin_ubicacion'
+    ];
     protected $dates = [
         'created_at',
         'updated_at'

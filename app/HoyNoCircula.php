@@ -17,6 +17,14 @@ class HoyNoCircula extends Model
         'ctlg_id_ctlg_hoy_no_circula',
         'vehiculo_id_vehiculo'
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_hoy_no_circula'
+    ];
     protected $dates = [
         'created_at',
         'updated_at'

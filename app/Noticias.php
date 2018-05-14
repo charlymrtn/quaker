@@ -27,6 +27,14 @@ class Noticias extends Model
     protected $fillable = [
         'descripcion_noticia',
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_noticias'
+    ];
     protected $dates = [
         'created_at',
         'updated_at',

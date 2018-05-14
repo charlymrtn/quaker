@@ -27,6 +27,14 @@ class CtlgModelos extends Model
     protected $fillable = [
         'modelo',
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_ctlg_modelos'
+    ];
     protected $dates = [
         'created_at',
         'updated_at',

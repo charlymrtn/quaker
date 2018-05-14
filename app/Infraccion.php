@@ -8,6 +8,7 @@ use App\Vehiculo;
 class Infraccion extends Model
 {
     protected $table = 'infracciones';
+    protected $primaryKey = 'id_infraccion';
     protected $fillable = [
         'folio',
         'fecha',

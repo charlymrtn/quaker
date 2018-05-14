@@ -17,6 +17,7 @@ use App\Foto;
 class Vehiculo extends Model
 {
     protected $table = 'vehiculo';
+    protected $primaryKey = 'id_vehiculo';
     protected $fillable = [
         'alias',
         'placas',

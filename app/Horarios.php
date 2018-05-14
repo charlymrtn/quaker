@@ -15,6 +15,14 @@ class Horarios extends Model
         'sab_inicio',
         'sab_fin',
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_horario'
+    ];
     protected $dates = [
         'created_at',
         'update_at'

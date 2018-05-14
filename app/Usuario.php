@@ -12,6 +12,7 @@ use App\UbicacionParkimetro;
 class Usuario extends Model
 {
     protected $table = 'usuario';
+    protected $primaryKey = 'id_usuario';
     protected $fillable = [
         'nombre',
         'email',

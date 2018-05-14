@@ -28,6 +28,9 @@ class CtlgHologramas extends Model
     protected $fillable = [
         'holograma',
     ];
+    protected $guarded = [
+        'id_ctlg_hologramas'
+    ];
     protected $dates = [
         'created_at',
         'updated_at',

@@ -27,6 +27,14 @@ class CtlgTipoCobertura extends Model
     protected $fillable = [
         'descripcion_tipo_coberturacol',
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_ctlg_tipo_cobertura'
+    ];
     protected $dates = [
         'created_at',
         'updated_at',

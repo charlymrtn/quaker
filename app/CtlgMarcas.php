@@ -27,6 +27,14 @@ class CtlgMarcas extends Model
     protected $fillable = [
         'marca',
     ];
+    /**
+     * The attributes that are guarded.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id_ctlg_marcas'
+    ];
     protected $dates = [
         'created_at',
         'updated_at',
