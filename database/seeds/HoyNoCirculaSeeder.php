@@ -18,8 +18,8 @@ class HoyNoCirculaSeeder extends Seeder
         for ($x = 1; $x < 11; $x++) {
             DB::table('hoy_no_circula')->insert([
                 'ctlg_hologramas_id_ctlg_hologramas'=> rand(1, 5),
-                'horario_id_horario'=> rand(1, 5),
-                'ctlg_id_ctlg_hoy_no_circula'=> rand(1, 5),
+                'horario_id_horario'=> rand(1, 2),
+                'ctlg_id_ctlg_hoy_no_circula'=> rand(1, 10),
                 'vehiculo_id_vehiculo'=> rand(1, 5),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
