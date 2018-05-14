@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Horarios;
 use App\CtlgHologramas;
 use App\CtlgHoyNoCircula;
+use App\Vehiculo;
 
 class HoyNoCircula extends Model
 {
@@ -32,14 +33,18 @@ class HoyNoCircula extends Model
     
     public function horarios()
     {
-        return $this->belongsTo('App\Horarios');
+        return $this->belongsTo(Horarios::class);
     }
     public function ctlgHologramas()
     {
-        return $this->belongsTo('App\CtlgHologramas');
+        return $this->belongsTo(CtlgHologramas::class);
     }
     public function ctlgHoyNoCircula()
     {
-        return $this->belongsTo('App\CtlgHoyNoCircula');
+        return $this->belongsTo(CtlgHoyNoCircula::class);
+    }
+    public function vehiculo()
+    {
+        return $this->belongsTo(Vehiculo::class);
     }
 }

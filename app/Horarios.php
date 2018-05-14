@@ -30,6 +30,6 @@ class Horarios extends Model
     
     public function hoyNoCircula()
     {
-        return $this->hasMany('App\HoyNoCircula');
+        return $this->hasMany(HoyNoCircula::class);
     }
 }

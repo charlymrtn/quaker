@@ -13,6 +13,7 @@ use App\Verificacion;
 use App\PolizaSeguro;
 use App\CtlgSubMarca;
 use App\Foto;
+use App\HoyNoCircula;
 
 class Vehiculo extends Model
 {
@@ -73,6 +74,10 @@ class Vehiculo extends Model
     public function foto()
     {
        return $this->hasMany(Foto::class);
+    }
+    public function hoyNoCircula()
+    {
+        return $this->hasMany(HoyNoCircula::class);
     }
     
 }

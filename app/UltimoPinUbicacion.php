@@ -29,6 +29,6 @@ class UltimoPinUbicacion extends Model
     
     public function usuario()
     {
-       return $this->belongTo(Usuario::class);
+       return $this->belongsTo(Usuario::class);
     }
 }
