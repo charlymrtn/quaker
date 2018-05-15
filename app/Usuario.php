@@ -12,7 +12,7 @@ use App\NoticiasHasUsuario;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
     use Notifiable;
     protected $table = 'users';
@@ -22,7 +22,6 @@ class Usuario extends Model
         'email',
         'password',
         'url_imagen',
-        'sesion',
         'noticias_id_noticias',
         'api_token'
     ];
