@@ -4,22 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Vehiculo;
-use App\Noticias;
 use App\CalidadAire;
 use App\UltimoPinUbicacion;
 use App\UbicacionParkimetro;
+use App\NoticiasHasUsuario;
 
-class Usuario extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class Usuario extends Authenticatable
 {
-    protected $table = 'usuario';
+    use Notifiable;
+    protected $table = 'users';
     protected $primaryKey = 'id_usuario';
     protected $fillable = [
         'nombre',
         'email',
-        'passworld',
+        'password',
         'url_imagen',
-        'sesion',
-        'noticias_id_noticias'
+        'noticias_id_noticias',
+        'api_token'
     ];
     protected $guarded = [
         'id_usuario'
@@ -28,14 +32,22 @@ class Usuario extends Model
         'created_at',
         'updated_at',
     ];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token', 'api_token',
+    ];
     
     public function vehiculo()
     {
         return $this->hasMany(Vehiculo::class);
     }
-    public function noticias()
+    public function noticiasHasUsuario()
     {
-        return $this->belongsTo(Noticias::class);
+        return $this->hasMany(NoticiasHasUsuario::class);
     }
     public function calidadAire()
     {
