@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Vehiculo;
-use App\Noticias;
 use App\CalidadAire;
 use App\UltimoPinUbicacion;
 use App\UbicacionParkimetro;
+use App\NoticiasHasUsuario;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,9 +46,9 @@ class Usuario extends Model
     {
         return $this->hasMany(Vehiculo::class);
     }
-    public function noticias()
+    public function noticiasHasUsuario()
     {
-        return $this->belongsTo(Noticias::class);
+        return $this->hasMany(NoticiasHasUsuario::class);
     }
     public function calidadAire()
     {

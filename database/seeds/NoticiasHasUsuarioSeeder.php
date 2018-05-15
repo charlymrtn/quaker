@@ -3,28 +3,25 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
-use App\Usuario;
+use App\NoticiasHasUsuario;
 
-class UsuarioSeeder extends Seeder {
-
+class NoticiasHasUsuarioSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         $faker = Faker::create();
         for ($x = 1; $x < 11; $x++) {
-            DB::table('users')->insert([
-                'nombre' => $faker->name,
-                'email' => $faker->email,
-                'password' => bcrypt('secret'),
-                'api_token' => str_random(60),
-                'url_imagen' => $faker->url,
+            DB::table('noticias_has_usuario')->insert([
+                'noticias_id_noticias' => rand(1, 10),
+                'usuario_id_usuario' => rand(1, 10),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);
         }
     }
-
 }

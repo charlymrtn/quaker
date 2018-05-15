@@ -14,6 +14,7 @@ class CreateNoticiasHasUsuarioTable extends Migration
     public function up()
     {
         Schema::create('noticias_has_usuario', function (Blueprint $table) {
+            $table->increments('id_noticias_has_usuario');
             $table->unsignedInteger('noticias_id_noticias');
             $table->unsignedInteger('usuario_id_usuario');
 
