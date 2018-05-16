@@ -23,7 +23,7 @@ Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
 //Auth::routes();
 
 Route::post('register', 'Auth\RegisterController@register');
-Route::get('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@login');
 
 Route::group(['middleware' => ['auth:api']], function() {
 
