@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Vehiculo;
+use App\CtlgMarcas;
 
 class CtlgModelos extends Model
 {
@@ -42,5 +43,9 @@ class CtlgModelos extends Model
 
     public function vehiculo(){
         return $this->hasMany(Vehiculo::class);
+    }
+    public function marca()
+    {
+        return $this->belongsTo(CtlgMarcas::class);
     }
 }

@@ -16,13 +16,12 @@ class CreateVehiculoTable extends Migration {
 			$table->string('alias');
 			$table->string('placas');
 			$table->string('estado');
+			$table->string('anio');
 			$table->unsignedInteger('usuario_id_usuario');
-			$table->unsignedInteger('ctlg_marcas_id_ctlg_marcas');
 			$table->unsignedInteger('ctlg_modelos_id_ctlg_modelos');
 			$table->unsignedInteger('ctlg_hologramas_id_ctlg_hologramas');
 
 			$table->foreign('usuario_id_usuario')->references('id_usuario')->on('users')->onDelete('cascade');
-			$table->foreign('ctlg_marcas_id_ctlg_marcas')->references('id_ctlg_marcas')->on('ctlg_marcas')->onDelete('cascade');
 			$table->foreign('ctlg_modelos_id_ctlg_modelos')->references('id_ctlg_modelos')->on('ctlg_modelos')->onDelete('cascade');
 			$table->foreign('ctlg_hologramas_id_ctlg_hologramas')->references('id_ctlg_hologramas')->on('ctlg_hologramas')->onDelete('cascade');
 
