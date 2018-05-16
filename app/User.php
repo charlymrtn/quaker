@@ -1,7 +1,10 @@
 <?php
 
 namespace App;
-
+use App\Vehiculo;
+use App\CalidadAire;
+use App\UltimoPinUbicacion;
+use App\UbicacionParkimetro;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -37,10 +40,6 @@ class User extends Authenticatable
     public function vehiculo()
     {
         return $this->hasMany(Vehiculo::class);
-    }
-    public function noticiasHasUsuario()
-    {
-        return $this->hasMany(NoticiasHasUsuario::class);
     }
     public function calidadAire()
     {
