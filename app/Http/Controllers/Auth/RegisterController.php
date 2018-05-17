@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Usuario;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -70,5 +71,11 @@ class RegisterController extends Controller
             'url_imagen' => str_random(10),
             'password' => Hash::make($data['password']),
         ]);
+    }
+    protected function registered(Request $request, $user)
+    {
+        $user->generateToken();
+
+        return response()->json(['data' => $user->toArray()], 201);
     }
 }

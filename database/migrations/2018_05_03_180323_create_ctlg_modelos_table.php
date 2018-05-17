@@ -14,6 +14,10 @@ class CreateCtlgModelosTable extends Migration {
 		Schema::create('ctlg_modelos', function (Blueprint $table) {
 			$table->increments('id_ctlg_modelos');
 			$table->string('modelo');
+			
+			$table->unsignedInteger('ctlg_marcas_id_ctlg_marcas');
+			$table->foreign('ctlg_marcas_id_ctlg_marcas')->references('id_ctlg_marcas')->on('ctlg_marcas')->onDelete('cascade');
+
 			$table->timestamps();
 		});
 	}

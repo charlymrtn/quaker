@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CtlgModelosSeeder::class);
         $this->call(CtlgTipoCoberturaSeeder::class);
         $this->call(CtlgTipoPagoSeeder::class);
-        $this->call(NoticiasSeeder::class);
         $this->call(UsuarioSeeder::class);
         $this->call(VehiculoSeeder::class);
         $this->call(InfraccionSeeder::class);
@@ -31,6 +30,5 @@ class DatabaseSeeder extends Seeder
         $this->call(HorariosSeeder::class);
         $this->call(CtlgHoyNoCirculaSeeder::class);
         $this->call(HoyNoCirculaSeeder::class);
-        $this->call(NoticiasHasUsuarioSeeder::class);
     }
 }
