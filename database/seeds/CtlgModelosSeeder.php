@@ -18,6 +18,7 @@ class CtlgModelosSeeder extends Seeder
         for ($x = 1; $x < 11; $x++) {
             DB::table('ctlg_modelos')->insert([
                 'modelo' => $faker->domainName,
+                'ctlg_marcas_id_ctlg_marcas'=> rand(1, 10),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);

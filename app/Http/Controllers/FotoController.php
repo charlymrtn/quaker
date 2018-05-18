@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Vehiculo;
+use App\Foto;
 use Auth;
 use DB;
 
-class VehiculoController extends Controller
+class FotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class VehiculoController extends Controller
     public function index()
     {
         return response()->json(
-            Vehiculo::all()
+            Foto::all()
         );
     }
 
@@ -39,15 +39,10 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        $insert = DB::table('vehiculo')->insert([
+        $insert = DB::table('foto')->insert([
             [
-                'alias' => $request->alias,
-                'placas' => $request->placas,
-                'estado' => $request->estado,
-                'anio' => $request->anio,
-                'usuario_id_usuario' => $request->usuario_id_usuario,
-                'ctlg_modelos_id_ctlg_modelos' => $request->ctlg_modelos_id_ctlg_modelos,
-                'ctlg_hologramas_id_ctlg_hologramas' => $request->ctlg_hologramas_id_ctlg_hologramas,
+                'ubicacion' => $request->ubicacion,
+                'vehiculo_id_vehiculo' => $request->vehiculo_id_vehiculo,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' =>date('Y-m-d H:i:s')
             ],
@@ -55,7 +50,6 @@ class VehiculoController extends Controller
         if($insert){
             return response()->json($insert, 201);
         }
-        
     }
 
     /**
@@ -67,10 +61,9 @@ class VehiculoController extends Controller
     public function show($id)
     {
         return response()->json(
-            $users = DB::table('vehiculo')
-                ->join('ctlg_hologramas', 'ctlg_hologramas.id_ctlg_hologramas', '=', 'vehiculo.ctlg_hologramas_id_ctlg_hologramas')
-                ->join('ctlg_modelos', 'ctlg_modelos.id_ctlg_modelos', '=', 'vehiculo.ctlg_modelos_id_ctlg_modelos')
-                ->select('vehiculo.*', 'ctlg_modelos.modelo', 'ctlg_hologramas.holograma')
+            $users = DB::table('foto')
+                ->join('vehiculo', 'vehiculo.id_vehiculo', '=', 'foto.vehiculo_id_vehiculo')
+                ->select('vehiculo.alias', 'foto.ubicacion', 'foto.created_at', 'foto.updated_at')
                 ->where('usuario_id_usuario', Auth::guard('api')->id())
                 ->get()
         );
@@ -84,7 +77,7 @@ class VehiculoController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
 
     /**
@@ -96,16 +89,11 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update = DB::table('vehiculo')
-            ->where('id_vehiculo', $id)
+        $update = DB::table('foto')
+            ->where('id_foto', $id)
             ->update([
-                'alias' => $request->alias,
-                'placas' => $request->placas,
-                'estado' => $request->estado,
-                'anio' => $request->anio,
-                'usuario_id_usuario' => $request->usuario_id_usuario,
-                'ctlg_modelos_id_ctlg_modelos' => $request->ctlg_modelos_id_ctlg_modelos,
-                'ctlg_hologramas_id_ctlg_hologramas' => $request->ctlg_hologramas_id_ctlg_hologramas,
+                'ubicacion' => $request->ubicacion,
+                'vehiculo_id_vehiculo' => $request->vehiculo_id_vehiculo,
                 'updated_at' =>date('Y-m-d H:i:s')
             ]);
 
@@ -122,7 +110,7 @@ class VehiculoController extends Controller
      */
     public function destroy($id)
     {
-        $delete = DB::table('vehiculo')->where('id_vehiculo', '=', $id)->delete();
+        $delete = DB::table('foto')->where('id_foto', '=', $id)->delete();
         if ($delete) {
             return response()->json('Borrado exitosamente', 201);
         }

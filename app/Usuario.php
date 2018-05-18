@@ -7,7 +7,6 @@ use App\Vehiculo;
 use App\CalidadAire;
 use App\UltimoPinUbicacion;
 use App\UbicacionParkimetro;
-use App\NoticiasHasUsuario;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,14 +39,10 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'password', // 'remember_token', 'api_token',
     ];
-    
+
     public function vehiculo()
     {
         return $this->hasMany(Vehiculo::class);
-    }
-    public function noticiasHasUsuario()
-    {
-        return $this->hasMany(NoticiasHasUsuario::class);
     }
     public function calidadAire()
     {

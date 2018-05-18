@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Vehiculo;
+use App\CtlgModelos;
 
 class CtlgMarcas extends Model
 {
@@ -41,6 +41,6 @@ class CtlgMarcas extends Model
     ];
 
     public function vehiculo(){
-        return $this->hasMany(Vehiculo::class);
+        return $this->hasMany(CtlgModelos::class);
     }
 }
