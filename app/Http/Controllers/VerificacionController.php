@@ -17,8 +17,11 @@ class VerificacionController extends Controller
      */
     public function index()
     {
-      $usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
-      dd($usuario->id_usuario);
+      return response()->json(
+        Verificacion::all()
+      );
+      //$usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
+      //dd($usuario->id_usuario);
     }
 
     /**
@@ -39,17 +42,16 @@ class VerificacionController extends Controller
      */
     public function store(Request $request)
     {
-      $usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
-      $fecha_verificacion = $request->input('fecha');
-      $cantidad = $request->input('cantidad');
-      //dd($usuario);
-      $coche = DB::select(DB::raw("SELECT B.id_vehiculo FROM
-        (users AS A JOIN vehiculo AS B) JOIN verificacion AS C ON  A.id_usuario = B.usuario_id_usuario AND B.id_vehiculo = C.vehiculo_id_vehiculo WHERE id_usuario = '$usuario->id_usuario'"));
-      return Verificacion::create([
-          'fecha_verificacion' => $fecha_verificacion,
-          'cantidad' => $cantidad,
-          'id_vehiculo' => $coche->id_vehiculo,
-      ]);
+      $insert = DB::table('verificacion')->insert([
+            [
+                'fecha_verificacion' => $request->fecha_verificacion,
+                'cantidad' => $request->cantidad,
+                'vehiculo_id_vehiculo' => $request->vehiculo_id_vehiculo,
+            ],
+        ]);
+        if($insert){
+            return response()->json($insert, 201);
+        }
     }
 
     /**
@@ -61,7 +63,6 @@ class VerificacionController extends Controller
     public function show($id)
     {
       $usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
-      //dd($usuario);
       $coche = DB::select(DB::raw("SELECT B.id_vehiculo, B.alias, B.placas, B.estado, B.anio, C.fecha_verificacion, C.cantidad FROM
         (users AS A JOIN vehiculo AS B) JOIN verificacion AS C ON  A.id_usuario = B.usuario_id_usuario AND B.id_vehiculo = C.vehiculo_id_vehiculo WHERE id_usuario = '$usuario->id_usuario'"));
       return response()->json(
@@ -89,14 +90,20 @@ class VerificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
-      //se debe actualizar la verificación
-      //$coche = DB::select(DB::raw("SELECT B.id_vehiculo, B.alias, B.placas, B.estado, B.anio, C.fecha_verificacion, C.cantidad FROM
-        //(users AS A JOIN vehiculo AS B) JOIN verificacion AS C ON  A.id_usuario = B.usuario_id_usuario AND B.id_vehiculo = C.vehiculo_id_vehiculo WHERE id_usuario = '$usuario->id_usuario'"));
-      $nuevaVerificacion = Verificacion::findOrFail($id)->update($request->all());
-      return response()->json([
-          'OK' => 'OK. Registro actualizado. Verificacion'
-      ], 200);
+      $update = DB::table('verificacion')
+            ->where('id_verificacion', $id)
+            ->update([
+              'fecha_verificacion' => $request->fecha_verificacion,
+              'cantidad' => $request->cantidad,
+              'vehiculo_id_vehiculo' => $request->vehiculo_id_vehiculo,
+              'updated_at' =>date('Y-m-d H:i:s')
+            ]);
+
+        if($update){
+            return response()->json([
+              'OK' => 'OK. Registro actualizado. Verificacion'
+            ], 201);
+        }
     }
 
     /**
@@ -107,6 +114,9 @@ class VerificacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $delete = DB::table('verificacion')->where('id_verificacion', '=', $id)->delete();
+      if ($delete) {
+          return response()->json('OK. Borrado exitosamente', 201);
+      }
     }
 }

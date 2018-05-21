@@ -20,9 +20,11 @@ Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
     Route::resource('vehiculo', 'VehiculoController');
     //Route::resource('calidadAire', 'CalidadAireController');
     Route::get('/getAirQuality/{lat}/{long}', 'API_Dependencies\AirQualityController@getAirQuality');
+    Route::resource('verificacion', 'VerificacionController');
+    Route::resource('poliza', 'PolizaSeguroController');
 });
 //Auth::routes();
-Route::resource('verificacion', 'VerificacionController');
+//Route::get('agrega', ['as' => 'agrega', 'uses' => '']);
 
 Route::post('register', ['as' => 'register', 'uses' =>'Auth\RegisterController@register']);
 Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
