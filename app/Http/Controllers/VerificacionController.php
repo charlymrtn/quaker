@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Verificacion;
 use App\Usuario;
 use Auth;
+use DB;
+
 
 class VerificacionController extends Controller
 {
