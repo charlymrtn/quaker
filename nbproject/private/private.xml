@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/quaker_webservices/composer.lock</file>
-            <file>file:/var/www/html/quaker_webservices/database/seeds/VerificacionSeeder.php</file>
-            <file>file:/var/www/html/quaker_webservices/database/seeds/DatabaseSeeder.php</file>
-            <file>file:/var/www/html/quaker_webservices/database/migrations/2018_05_03_201528_create_verificacion_table.php</file>
-            <file>file:/var/www/html/quaker_webservices/database/seeds/VehiculoSeeder.php</file>
-            <file>file:/var/www/html/quaker_webservices/.gitignore</file>
+            <file>file:/var/www/html/quaker_webservices/database/seeds/ServicioMantenimientoSeeder.php</file>
         </group>
     </open-files>
 </project-private>

@@ -13,7 +13,7 @@ class CreateServicioMantenimientoTable extends Migration {
 	public function up() {
 		Schema::create('servicio_mantenimiento', function (Blueprint $table) {
 			$table->increments('id_servicio_mantenimiento');
-			$table->time('fecha_servicio');
+			$table->date('fecha_servicio');
 			$table->string('motivo');
 			$table->integer('monto_servicio');
                         $table->integer('vehiculo_id_vehiculo')->unsigned();
