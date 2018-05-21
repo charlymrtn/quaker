@@ -17,8 +17,8 @@ class ServicioMantenimientoSeeder extends Seeder
         $faker = Faker::create();
         for ($x = 1; $x < 11; $x++) {
             DB::table('servicio_mantenimiento')->insert([
-                'fecha_servicio'=>$faker->time(),
-                'motivo'=>$faker->date(),
+                'fecha_servicio'=>$faker->date(),
+                'motivo'=>$faker->text(),
                 'monto_servicio'=> '2500',            
                 'vehiculo_id_vehiculo'=> rand(1, 10),               
                 'created_at' => $faker->dateTime,

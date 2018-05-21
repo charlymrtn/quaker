@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Verificacion;
-use App\Usuario;
+use App\ServicioMantenimiento;
 use Auth;
+use DB;
 
-class VerificacionController extends Controller
+class ServicioMantenimientoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,9 @@ class VerificacionController extends Controller
      */
     public function index()
     {
-      return response()->json(
-        Verificacion::all()
-      );
-      //$usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
-      //dd($usuario->id_usuario);
+        return response()->json(
+            ServicioMantenimiento::all()
+        );
     }
 
     /**
@@ -42,11 +39,14 @@ class VerificacionController extends Controller
      */
     public function store(Request $request)
     {
-      $insert = DB::table('verificacion')->insert([
+        $insert = DB::table('servicio_mantenimiento')->insert([
             [
-                'fecha_verificacion' => $request->fecha_verificacion,
-                'cantidad' => $request->cantidad,
+                'fecha_servicio' => $request->fecha_servicio,
+                'motivo' => $request->motivo,
+                'monto_servicio' => $request->monto_servicio,
                 'vehiculo_id_vehiculo' => $request->vehiculo_id_vehiculo,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' =>date('Y-m-d H:i:s')
             ],
         ]);
         if($insert){
@@ -62,12 +62,13 @@ class VerificacionController extends Controller
      */
     public function show($id)
     {
-      $usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
-      $coche = DB::select(DB::raw("SELECT B.id_vehiculo, B.alias, B.placas, B.estado, B.anio, C.fecha_verificacion, C.cantidad FROM
-        (users AS A JOIN vehiculo AS B) JOIN verificacion AS C ON  A.id_usuario = B.usuario_id_usuario AND B.id_vehiculo = C.vehiculo_id_vehiculo WHERE id_usuario = '$usuario->id_usuario'"));
-      return response()->json(
-          $coche
-      );
+        return response()->json(
+            $users = DB::table('servicio_mantenimiento')
+                ->join('vehiculo', 'vehiculo.id_vehiculo', '=', 'servicio_mantenimiento.vehiculo_id_vehiculo')
+                ->select('servicio_mantenimiento.*', 'vehiculo.alias')
+                ->where('usuario_id_usuario', Auth::guard('api')->id())
+                ->get()
+        );
     }
 
     /**
@@ -90,19 +91,18 @@ class VerificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $update = DB::table('verificacion')
-            ->where('id_verificacion', $id)
+        $update = DB::table('servicio_mantenimiento')
+            ->where('id_servicio_mantenimiento', $id)
             ->update([
-              'fecha_verificacion' => $request->fecha_verificacion,
-              'cantidad' => $request->cantidad,
-              'vehiculo_id_vehiculo' => $request->vehiculo_id_vehiculo,
-              'updated_at' =>date('Y-m-d H:i:s')
+                'fecha_servicio' => $request->fecha_servicio,
+                'motivo' => $request->motivo,
+                'monto_servicio' => $request->monto_servicio,
+                'vehiculo_id_vehiculo' => $request->vehiculo_id_vehiculo,
+                'updated_at' =>date('Y-m-d H:i:s')
             ]);
 
         if($update){
-            return response()->json([
-              'OK' => 'OK. Registro actualizado. Verificacion'
-            ], 201);
+            return response()->json($update, 201);
         }
     }
 
@@ -114,9 +114,9 @@ class VerificacionController extends Controller
      */
     public function destroy($id)
     {
-      $delete = DB::table('verificacion')->where('id_verificacion', '=', $id)->delete();
-      if ($delete) {
-          return response()->json('OK. Borrado exitosamente', 201);
-      }
+        $delete = DB::table('servicio_mantenimiento')->where('id_servicio_mantenimiento', '=', $id)->delete();
+        if ($delete) {
+            return response()->json('Borrado exitosamente', 201);
+        }
     }
 }
