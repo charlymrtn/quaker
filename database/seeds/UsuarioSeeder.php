@@ -14,11 +14,22 @@ class UsuarioSeeder extends Seeder {
      */
     public function run() {
         $faker = Faker::create();
-        for ($x = 1; $x < 11; $x++) {
+        DB::table('users')->insert([
+            'nombre' => 'John',
+            'email' => 'correo@ejemplo.com',
+            'password' => bcrypt('123456'),
+            'status' => true,
+            'api_token' => str_random(60),
+            'url_imagen' => $faker->url,
+            'created_at' => $faker->dateTime,
+            'updated_at' => $faker->dateTime,
+        ]);
+        for ($x = 2; $x < 11; $x++) {
             DB::table('users')->insert([
                 'nombre' => $faker->name,
                 'email' => $faker->email,
                 'password' => bcrypt('secret'),
+                'status' => true,
                 'api_token' => str_random(60),
                 'url_imagen' => $faker->url,
                 'created_at' => $faker->dateTime,

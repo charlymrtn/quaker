@@ -20,6 +20,7 @@ class Usuario extends Authenticatable
         'nombre',
         'email',
         'password',
+        'status',
         'url_imagen',
         'noticias_id_noticias',
         'api_token'

@@ -17,9 +17,9 @@ class VerificacionSeeder extends Seeder
         $faker = Faker::create();
         for ($x = 1; $x < 11; $x++) {
             DB::table('verificacion')->insert([
-                'fecha_verificacion'=>$faker->time(),
+                'fecha_verificacion'=>$faker->date($format = 'Y-m-d', $max = 'now'),
                 'cantidad'=>'500',
-                'vehiculo_id_vehiculo'=> rand(1, 10),                           
+                'vehiculo_id_vehiculo'=> rand(1, 10),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);
