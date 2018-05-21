@@ -18,13 +18,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
     Route::resource('vehiculo', 'VehiculoController');
-    Route::resource('calidadAire', 'CalidadAireController');
+    //Route::resource('calidadAire', 'CalidadAireController');
     Route::get('/getAirQuality/{lat}/{long}', 'API_Dependencies\AirQualityController@getAirQuality');
+    Route::resource('verificacion', 'VerificacionController');
+    Route::resource('poliza', 'PolizaSeguroController');
 });
 //Auth::routes();
+//Route::get('agrega', ['as' => 'agrega', 'uses' => '']);
 
-Route::post('register', 'Auth\RegisterController@register');
-Route::post('login', 'Auth\LoginController@login');
+Route::post('register', ['as' => 'register', 'uses' =>'Auth\RegisterController@register']);
+Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+
 
 Route::group(['middleware' => ['auth:api']], function() {
 

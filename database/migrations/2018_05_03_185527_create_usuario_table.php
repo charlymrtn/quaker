@@ -16,6 +16,7 @@ class CreateUsuarioTable extends Migration {
 			$table->string('nombre');
 			$table->string('email')->unique();
 			$table->string('password');
+			$table->boolean('status');
 			$table->string('api_token', 60)->unique();
             $table->rememberToken();
 			$table->string('url_imagen');
