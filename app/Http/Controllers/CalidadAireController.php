@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\CalidadAire;
+use DB;
+use App\Usuario;
 
 class CalidadAireController extends Controller
 {
@@ -36,11 +38,17 @@ class CalidadAireController extends Controller
      */
     public function store(Request $request)
     {
-        $calidad = $request->input('note');
-        return CalidadAire::create([
-            'aqs' => $calidad,
-            'usuario_id_usuario' => Auth::guard('api')->id(),
+        $insert = DB::table('calidad_aire')->insert([
+            [
+                'aqs' => $request->aqs,
+                'usuario_id_usuario' => $request->usuario_id_usuario,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' =>date('Y-m-d H:i:s')
+            ],
         ]);
+        if($insert){
+            return response()->json($insert, 201);
+        }
     }
 
     /**
@@ -52,8 +60,15 @@ class CalidadAireController extends Controller
     public function show($id)
     {
         return response()->json(
-            CalidadAire::where('id_calidad_aire', $id)
-            ->where('usuario_id_usuario', Auth::guard('api')->id())
+            $CalidadAire = DB::table('calidad_aire')
+            ->join('users', 'users.id_usuario', '=', 'calidad_aire.usuario_id_usuario')
+            ->select(
+                'calidad_aire.aqs', 
+                'users.nombre',
+                'calidad_aire.created_at', 
+                'calidad_aire.updated_at'
+            )
+            ->where('id_calidad_aire', $id)
             ->first()
         );
     }

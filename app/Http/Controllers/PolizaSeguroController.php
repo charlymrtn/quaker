@@ -49,6 +49,8 @@ class PolizaSeguroController extends Controller
               'ctlg_tipo_cobertura_id_ctlg_tipo_cobertura' => $request->ctlg_tipo_cobertura_id_ctlg_tipo_cobertura,
               'ctlg_tipo_pago_id_ctlg_tipo_pago' => $request->ctlg_tipo_pago_id_ctlg_tipo_pago,
               'ctlg_asegura_id_ctlg_asegura' => $request->ctlg_asegura_id_ctlg_asegura,
+              'created_at' => date('Y-m-d H:i:s'),
+              'updated_at' =>date('Y-m-d H:i:s')
             ],
         ]);
         if($insert){
@@ -66,7 +68,7 @@ class PolizaSeguroController extends Controller
     {
       $usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
       $poliza = DB::select(DB::raw("SELECT B.numero_poliza, B.fecha_emision, B.fecha_pago, B.vehiculo_id_vehiculo FROM
-        vehiculo AS A JOIN poliza_seguro AS B ON  A.id_vehiculo = B.vehiculo_id_vehiculo WHERE usuario_id_usuario = '$usuario->id_usuario'"));
+        vehiculo AS A JOIN poliza_seguro AS B ON  A.id_vehiculo = B.vehiculo_id_vehiculo WHERE id_poliza_seguro = '$id'"));
       return response()->json(
           $poliza
       );

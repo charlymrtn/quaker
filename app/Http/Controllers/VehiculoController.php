@@ -70,8 +70,16 @@ class VehiculoController extends Controller
             $users = DB::table('vehiculo')
                 ->join('ctlg_hologramas', 'ctlg_hologramas.id_ctlg_hologramas', '=', 'vehiculo.ctlg_hologramas_id_ctlg_hologramas')
                 ->join('ctlg_modelos', 'ctlg_modelos.id_ctlg_modelos', '=', 'vehiculo.ctlg_modelos_id_ctlg_modelos')
-                ->select('vehiculo.*', 'ctlg_modelos.modelo', 'ctlg_hologramas.holograma')
-                ->where('usuario_id_usuario', Auth::guard('api')->id())
+                ->join('users', 'users.id_usuario', '=', 'vehiculo.usuario_id_usuario')
+                ->select(
+                    'vehiculo.alias', 
+                    'vehiculo.placas', 
+                    'vehiculo.estado', 
+                    'vehiculo.anio', 
+                    'users.nombre', 
+                    'ctlg_modelos.modelo', 
+                    'ctlg_hologramas.holograma')
+                ->where('id_vehiculo', $id)
                 ->get()
         );
     }

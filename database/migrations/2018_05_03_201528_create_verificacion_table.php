@@ -13,7 +13,7 @@ class CreateVerificacionTable extends Migration {
 	public function up() {
 		Schema::create('verificacion', function (Blueprint $table) {
 			$table->increments('id_verificacion');
-			$table->datetime('fecha_verificacion');
+			$table->date('fecha_verificacion');
 			$table->integer('cantidad');
 			$table->unsignedInteger('vehiculo_id_vehiculo');
 

@@ -61,10 +61,10 @@ class FotoController extends Controller
     public function show($id)
     {
         return response()->json(
-            $users = DB::table('foto')
+            $foto = DB::table('foto')
                 ->join('vehiculo', 'vehiculo.id_vehiculo', '=', 'foto.vehiculo_id_vehiculo')
-                ->select('vehiculo.alias', 'foto.ubicacion', 'foto.created_at', 'foto.updated_at')
-                ->where('usuario_id_usuario', Auth::guard('api')->id())
+                ->select('foto.ubicacion', 'vehiculo.alias', 'foto.created_at', 'foto.updated_at')
+                ->where('id_foto', $id)
                 ->get()
         );
     }

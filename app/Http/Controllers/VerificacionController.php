@@ -47,6 +47,8 @@ class VerificacionController extends Controller
                 'fecha_verificacion' => $request->fecha_verificacion,
                 'cantidad' => $request->cantidad,
                 'vehiculo_id_vehiculo' => $request->vehiculo_id_vehiculo,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' =>date('Y-m-d H:i:s')
             ],
         ]);
         if($insert){
@@ -64,7 +66,7 @@ class VerificacionController extends Controller
     {
       $usuario = Usuario::where('id_usuario', Auth::guard('api')->id())->first();
       $coche = DB::select(DB::raw("SELECT B.id_vehiculo, B.alias, B.placas, B.estado, B.anio, C.fecha_verificacion, C.cantidad FROM
-        (users AS A JOIN vehiculo AS B) JOIN verificacion AS C ON  A.id_usuario = B.usuario_id_usuario AND B.id_vehiculo = C.vehiculo_id_vehiculo WHERE id_usuario = '$usuario->id_usuario'"));
+        (users AS A JOIN vehiculo AS B) JOIN verificacion AS C ON  A.id_usuario = B.usuario_id_usuario AND B.id_vehiculo = C.vehiculo_id_vehiculo WHERE id_verificacion = '$id'"));
       return response()->json(
           $coche
       );

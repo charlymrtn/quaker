@@ -66,7 +66,7 @@ class ServicioMantenimientoController extends Controller
             $users = DB::table('servicio_mantenimiento')
                 ->join('vehiculo', 'vehiculo.id_vehiculo', '=', 'servicio_mantenimiento.vehiculo_id_vehiculo')
                 ->select('servicio_mantenimiento.*', 'vehiculo.alias')
-                ->where('usuario_id_usuario', Auth::guard('api')->id())
+                ->where('id_servicio_mantenimiento', $id)
                 ->get()
         );
     }
