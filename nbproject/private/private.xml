@@ -3,11 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/quaker_webservices/database/seeds/VerificacionSeeder.php</file>
-            <file>file:/var/www/html/quaker_webservices/app/Http/Controllers/API_Dependencies/DataVehiclesController.php</file>
-            <file>file:/var/www/html/quaker_webservices/app/Http/Controllers/CalidadAireController.php</file>
-            <file>file:/var/www/html/quaker_webservices/app/Http/Controllers/Auth/RegisterController.php</file>
-            <file>file:/var/www/html/quaker_webservices/routes/api.php</file>
+            <file>file:/var/www/html/quaker_webservices/database/seeds/NoticiasTableSeeder.php</file>
         </group>
     </open-files>
 </project-private>

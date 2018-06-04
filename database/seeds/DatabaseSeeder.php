@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HorariosSeeder::class);
         $this->call(CtlgHoyNoCirculaSeeder::class);
         $this->call(HoyNoCirculaSeeder::class);
+        $this->call(NoticiasTableSeeder::class);
     }
 }
