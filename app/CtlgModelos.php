@@ -46,6 +46,6 @@ class CtlgModelos extends Model
     }
     public function marca()
     {
-        return $this->belongsTo(CtlgMarcas::class);
+        return $this->belongsTo(CtlgMarcas::class,'ctlg_marcas_id_ctlg_marcas');
     }
 }

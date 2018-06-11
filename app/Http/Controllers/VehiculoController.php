@@ -16,9 +16,12 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        return response()->json(
-            Vehiculo::all()
-        );
+      $vehiculos  = Vehiculo::paginate(4);
+      //return $vehiculos;
+      return view ('quaker.vehiculos',compact('vehiculos'));
+        // return response()->json(
+        //     Vehiculo::all()
+        // );
     }
 
     /**
@@ -55,7 +58,7 @@ class VehiculoController extends Controller
         if($insert){
             return response()->json($insert, 201);
         }
-        
+
     }
 
     /**
@@ -66,22 +69,25 @@ class VehiculoController extends Controller
      */
     public function show($id)
     {
-        return response()->json(
-            $users = DB::table('vehiculo')
-                ->join('ctlg_hologramas', 'ctlg_hologramas.id_ctlg_hologramas', '=', 'vehiculo.ctlg_hologramas_id_ctlg_hologramas')
-                ->join('ctlg_modelos', 'ctlg_modelos.id_ctlg_modelos', '=', 'vehiculo.ctlg_modelos_id_ctlg_modelos')
-                ->join('users', 'users.id_usuario', '=', 'vehiculo.usuario_id_usuario')
-                ->select(
-                    'vehiculo.alias', 
-                    'vehiculo.placas', 
-                    'vehiculo.estado', 
-                    'vehiculo.anio', 
-                    'users.nombre', 
-                    'ctlg_modelos.modelo', 
-                    'ctlg_hologramas.holograma')
-                ->where('id_vehiculo', $id)
-                ->get()
-        );
+        $vehiculo = Vehiculo::find($id);
+
+        return view('quaker.vehiculo',compact('vehiculo'));
+        // return response()->json(
+        //     $users = DB::table('vehiculo')
+        //         ->join('ctlg_hologramas', 'ctlg_hologramas.id_ctlg_hologramas', '=', 'vehiculo.ctlg_hologramas_id_ctlg_hologramas')
+        //         ->join('ctlg_modelos', 'ctlg_modelos.id_ctlg_modelos', '=', 'vehiculo.ctlg_modelos_id_ctlg_modelos')
+        //         ->join('users', 'users.id_usuario', '=', 'vehiculo.usuario_id_usuario')
+        //         ->select(
+        //             'vehiculo.alias',
+        //             'vehiculo.placas',
+        //             'vehiculo.estado',
+        //             'vehiculo.anio',
+        //             'users.nombre',
+        //             'ctlg_modelos.modelo',
+        //             'ctlg_hologramas.holograma')
+        //         ->where('id_vehiculo', $id)
+        //         ->get()
+        //);
     }
 
     /**
@@ -92,7 +98,7 @@ class VehiculoController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     /**
@@ -134,5 +140,32 @@ class VehiculoController extends Controller
         if ($delete) {
             return response()->json('Borrado exitosamente', 201);
         }
+    }
+
+    public function infracciones($id)
+    {
+      // code...
+      $vehiculo = Vehiculo::find($id);
+      $infracciones = $vehiculo->infracciones;
+
+      return view('quaker.infracciones',compact('infracciones'));
+    }
+
+    public function servicios($id)
+    {
+      // code...
+      $vehiculo = Vehiculo::find($id);
+      $servicios = $vehiculo->serviciosMantenimientos;
+
+      return view('quaker.servicios',compact('servicios'));
+    }
+
+    public function usuario($id)
+    {
+      // code...
+      $vehiculo = Vehiculo::find($id);
+      $usuario = $vehiculo->usuario;
+      //return $usuario;
+      return view('quaker.usuario',compact('usuario'));
     }
 }

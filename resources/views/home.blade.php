@@ -16,6 +16,9 @@
                     <li class="nav-item">
                       <a class="nav-link" href="news">Noticias</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="vehiculos">Vehiculos</a>
+                    </li>
                   </ul>
                 </div>
               </nav>

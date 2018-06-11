@@ -35,11 +35,11 @@ class Vehiculo extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Usuario::class,'usuario_id_usuario');
     }
     public function modelos()
     {
-        return $this->belongsTo(CtlgModelos::class);
+        return $this->belongsTo(CtlgModelos::class,'ctlg_modelos_id_ctlg_modelos');
     }
     public function catalogoHologramas()
     {
@@ -47,11 +47,11 @@ class Vehiculo extends Model
     }
     public function serviciosMantenimientos()
     {
-        return $this->hasMany(ServicioMantenimiento::class);
+        return $this->hasMany(ServicioMantenimiento::class,'vehiculo_id_vehiculo');
     }
     public function infracciones()
     {
-        return $this->hasMany(Infraccion::class);
+        return $this->hasMany(Infraccion::class,'vehiculo_id_vehiculo');
     }
     public function verificaciones()
     {
