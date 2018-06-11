@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Noticia;
 use DB;
+use stdClass;
 
 class NoticiasController extends Controller
 {
@@ -16,7 +17,8 @@ class NoticiasController extends Controller
     public function index()
     {
         $noticias = Noticia::orderBy('id', 'DESC')->get();
-        return response()->json($noticias);
+        return view('quaker.noticias',compact('noticias'));
+        //return response()->json($noticias);
     }
 
     /**
@@ -27,20 +29,30 @@ class NoticiasController extends Controller
      */
     public function store(Request $request)
     {
-        $insert = DB::table('noticias')->insert([
-            [
-                'titulo' => $request->titulo,
-                'contenido' => $request->contenido,
-                'imagen' => $request->imagen,
-                'url' => $request->url,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' =>date('Y-m-d H:i:s')
-            ],
-        ]);
-        if($insert){
-            return response()->json($insert, 201);
-        } else {
-            return response()->json($insert->errors()->all());
+      if ($request->hasFile('imagen')) {
+
+      }
+
+        $noticia = Noticia::create([
+                  'titulo' => $request->title,
+                  'contenido' => $request->contenido,
+                  'imagen' => '',
+                  'url' => ''
+              ]);
+        if($noticia){
+          if ($request->hasFile('imagen')) {
+            $imageName = $noticia->id.'.'.$request->file('imagen')->getClientOriginalExtension();
+            $request->file('imagen')->move(
+              base_path() . '/public/images/catalog/', $imageName
+            );
+            $notiRuta = '/images/catalog/'. $imageName;
+            $noticia->imagen = $notiRuta;
+            $noticia->save();
+          }
+            return view('quaker.noticia',compact('noticia'));
+            //return response()->json($insert, 201);
+        }else{
+          return response()->json($insert->errors()->all());
         }
     }
 
@@ -54,11 +66,39 @@ class NoticiasController extends Controller
     {
         $noticia = Noticia::find($id);
         if (!empty($noticia)) {
-            return response()->json($noticia);
+            return view('quaker.noticia',compact('noticia'));
+            //return response()->json($noticia);
         } else {
             return response()->json("No se encontro ningun resultado con el id proporcionado", 200);
         }
-        
+
+    }
+
+    public function edit($id)
+    {
+      // code...
+      $noticia =Noticia::find($id);
+      if (!empty($noticia)) {
+          return view('quaker.noticia_edit',compact('noticia'));
+          //return response()->json($noticia);
+      } else {
+          return response()->json("No se encontro ningun resultado con el id proporcionado", 200);
+      }
+
+    }
+
+    public function create()
+    {
+      // code...
+      $noticia =new stdClass;
+      return view('quaker.noticia_edit',compact('noticia'));
+    }
+
+    public function destroy($id)
+    {
+      // code...
+      Noticia::destroy($id);
+      return redirect('news');;
     }
 
     /**
@@ -70,18 +110,31 @@ class NoticiasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update = DB::table('noticias')
-            ->where('id', $id)
-            ->update([
-                'titulo' => $request->titulo,
-                'contenido' => $request->contenido,
-                'imagen' => $request->imagen,
-                'url' => $request->url,
-                'updated_at' =>date('Y-m-d H:i:s')
-            ]);
+        $update =Noticia::find($id);
+
+        if ($request->hasFile('imagen')) {
+          // code...
+
+          $imageName = $update->id.'.'.$request->file('imagen')->getClientOriginalExtension();
+          $request->file('imagen')->move(
+            base_path() . '/public/images/catalog/', $imageName
+          );
+          $notiRuta = '/images/catalog/'. $imageName;
+        }
+
+        $update =Noticia::find($id);
+        $update->titulo =$request->title;
+        $update->contenido =$request->contenido;
+        if (isset($notiRuta)) {
+          // code...
+          $update->imagen = $notiRuta;
+        }
+        //$update->url = $request->url;
+        $update->save();
 
         if($update){
-            return response()->json($update, 201);
+            //return response()->json($update, 201);
+            return redirect('news/'.$update->id);
         } else {
             return response()->json($update->errors()->all());
         }

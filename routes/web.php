@@ -12,10 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+Route::get('home', 'HomeController@index')->name('home');
+Route::resource('news', 'NoticiasController', ['except' => ['destroy']]);
+Route::get('delete/{id}', [
+    'as' => 'delete', 'uses' => 'NoticiasController@destroy'
+]);
 //Route::post('register1', 'Auth\RegisterController@register');
