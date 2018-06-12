@@ -18,7 +18,7 @@ class VehiculoSeeder extends Seeder
         for ($x = 1; $x < 11; $x++) {
             DB::table('vehiculo')->insert([
                 'alias'=>$faker->text(8),
-                'placas'=>$faker->sentence(6),
+                'placas'=>$faker->lexify('???').'-'.$faker->numerify('###'),
                 'estado'=>$faker->name,
                 'anio'=>rand(1970,2018),
                 'usuario_id_usuario'=> rand(1, 10),

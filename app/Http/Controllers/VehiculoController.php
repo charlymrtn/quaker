@@ -166,6 +166,6 @@ class VehiculoController extends Controller
       $vehiculo = Vehiculo::find($id);
       $usuario = $vehiculo->usuario;
       //return $usuario;
-      return view('quaker.usuario',compact('usuario'));
+      return view('quaker.usuario',compact('usuario','vehiculo'));
     }
 }

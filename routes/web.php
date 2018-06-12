@@ -31,6 +31,8 @@ Route::group(['middleware' => ['user']], function () {
   Route::get('infracciones/{id}', 'VehiculoController@infracciones');
   Route::get('servicios/{id}', 'VehiculoController@servicios');
   Route::get('usuario/{id}', 'VehiculoController@usuario');
+
+  Route::get('maps/{id}/{vehiculo}','MapsController@map');
 });
 
 //Route::post('register1', 'Auth\RegisterController@register');

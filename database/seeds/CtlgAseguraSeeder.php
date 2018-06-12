@@ -15,9 +15,9 @@ class CtlgAseguraSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($x = 1; $x < 11; $x++) {
+        for ($x = 0; $x < 10; $x++) {
             DB::table('ctlg_asegura')->insert([
-                'descripcion_asegura' => $faker->text,
+                'descripcion_asegura' => $faker->text(50),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);

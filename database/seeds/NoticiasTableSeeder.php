@@ -19,7 +19,7 @@ class NoticiasTableSeeder extends Seeder
             DB::table('noticias')->insert([
                 'titulo' => $faker->text(10),
                 'contenido' => $faker->paragraph(),
-                'imagen' => $faker->imageUrl(),
+                'imagen' => $faker->imageUrl(640,480,'sports'),
                 'url' => $faker->url,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),

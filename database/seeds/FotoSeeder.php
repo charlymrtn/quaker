@@ -17,7 +17,7 @@ class FotoSeeder extends Seeder
         $faker = Faker::create();
         for ($x = 1; $x < 11; $x++) {
             DB::table('foto')->insert([
-                'ubicacion'=>$faker->name,
+                'ubicacion'=>$faker->imageUrl(640,480,'transport'),
                 'vehiculo_id_vehiculo'=> rand(1, 10),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,

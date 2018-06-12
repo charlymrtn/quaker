@@ -15,12 +15,12 @@ class UsuarioSeeder extends Seeder {
     public function run() {
         $faker = Faker::create();
         DB::table('users')->insert([
-            'nombre' => 'John',
-            'email' => 'correo@ejemplo.com',
+            'nombre' => 'Carlos Martin',
+            'email' => 'carlos.martin@red-wolf.com.mx',
             'password' => bcrypt('123456'),
             'status' => true,
             'api_token' => str_random(60),
-            'url_imagen' => $faker->url,
+            'url_imagen' => $faker->imageUrl(640,480,'people'),
             'created_at' => $faker->dateTime,
             'updated_at' => $faker->dateTime,
         ]);
@@ -31,7 +31,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('secret'),
                 'status' => true,
                 'api_token' => str_random(60),
-                'url_imagen' => $faker->url,
+                'url_imagen' => $faker->imageUrl(640,480,'people'),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);
