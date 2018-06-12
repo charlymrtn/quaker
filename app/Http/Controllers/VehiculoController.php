@@ -108,23 +108,12 @@ class VehiculoController extends Controller
 
         $update->save();
 
-        return redirect('vehiculos/'.$update->id_vehiculo);
-        // $update = DB::table('vehiculo')
-        //     ->where('id_vehiculo', $id)
-        //     ->update([
-        //         'alias' => $request->alias,
-        //         'placas' => $request->placas,
-        //         'estado' => $request->estado,
-        //         'anio' => $request->anio,
-        //         'usuario_id_usuario' => $request->usuario_id_usuario,
-        //         'ctlg_modelos_id_ctlg_modelos' => $request->ctlg_modelos_id_ctlg_modelos,
-        //         'ctlg_hologramas_id_ctlg_hologramas' => $request->ctlg_hologramas_id_ctlg_hologramas,
-        //         'updated_at' =>date('Y-m-d H:i:s')
-        //     ]);
+        if ($update) {
+          // code...
+          return redirect('vehiculos/'.$update->id_vehiculo);
+          //return response()->json($update, 201);
 
-        // if($update){
-        //     return response()->json($update, 201);
-        // }
+        }
     }
 
     /**
