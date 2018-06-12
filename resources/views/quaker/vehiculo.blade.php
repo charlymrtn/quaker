@@ -23,8 +23,24 @@
                 <input type="text" class="form-control" id="estado" name="estado" aria-describedby="tituloHelp" placeholder="Ingresa estado" value="{{$vehiculo->estado}}">
               </div>
               <div class="form-group">
-                <label for="placas">Año</label>
+                <label for="anio">Año</label>
                 <input type="text" class="form-control" id="anio" name="anio" aria-describedby="tituloHelp" placeholder="Ingresa anio" value="{{$vehiculo->anio}}">
+              </div>
+              <div class="form-group">
+                <label for="usuario">Dueño</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="tituloHelp" placeholder="Ingresa anio" value="{{$vehiculo->usuario->nombre}}" disabled>
+              </div>
+              <div class="form-group">
+                <label for="modelo">Modelo</label>
+                <select name="modelo" id="modelo" class="form-control">
+                  @foreach ($modelos as $modelo)
+                    @if ($modelo->id_ctlg_modelos == $vehiculo->modelos->id_ctlg_modelos)
+                      <option selected="selected" value="{{$modelo->id_ctlg_modelos}}">{{$modelo->modelo}}</option>
+                    @else
+                      <option value="{{$modelo->id_ctlg_modelos}}">{{$modelo->modelo}}</option>
+                    @endif
+                  @endforeach
+                </select>
               </div>
 
               <button type="submit" class="btn btn-primary">Save</button>
