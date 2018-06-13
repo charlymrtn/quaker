@@ -30,7 +30,7 @@ return [
     | The region Google API should use required in ISO 3166-1 code format.
     |
     */
-    'region' => 'GB',
+    'region' => 'MX',
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     | The Language Google API should use required in ISO 639-1 code format.
     |
     */
-    'language' => 'en-gb',
+    'language' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     | The default zoom level Googlmapper should use.
     |
     */
-    'zoom' => 8,
+    'zoom' => 15,
 
     /*
     |--------------------------------------------------------------------------
