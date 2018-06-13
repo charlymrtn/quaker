@@ -49,17 +49,17 @@ class MapsController extends Controller
         array_push($places,$place);
       }
 
-      $map = Mapper::map($lat,$lon,
-      ['zoom' => 15,'markers' =>['animation'=> 'DROP']]);
+      // $map = Mapper::map($lat,$lon,
+      // ['zoom' => 15,'markers' =>['animation'=> 'DROP']]);
+      //
+      // foreach ($places as $place) {
+      //   // code...
+      //   Mapper::informationWindow($place->location->lat,$place->location->lng,$place->name,['open' => true, 'maxWidth'=> 300, 'markers' => ['title' => $place->address]]);
+      // }
+      //
+      // return view('quaker.markers',compact('map'));
 
-      foreach ($places as $place) {
-        // code...
-        Mapper::informationWindow($place->location->lat,$place->location->lng,$place->name,['open' => true, 'maxWidth'=> 300, 'markers' => ['title' => $place->address]]);
-      }
-
-      return view('quaker.markers',compact('map'));
-
-      //return response()->json(['places' => $places],200);
+      return response()->json(['places' => $places],200);
     }
 
     public function index()
