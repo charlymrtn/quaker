@@ -43,15 +43,6 @@ class GoogleAPIController extends Controller {
      * @param
      * @return
      */
-    public function getFuelStations() {
-
-    }
-
-    /**
-     *
-     * @param
-     * @return
-     */
     public function getVulcanisers() {
 
     }

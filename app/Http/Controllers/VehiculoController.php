@@ -172,6 +172,15 @@ class VehiculoController extends Controller
       return view('quaker.infracciones',compact('infracciones'));
     }
 
+    public function infraccionesApi($id)
+    {
+      // code...
+      $vehiculo = Vehiculo::find($id);
+      $infracciones = $vehiculo->infracciones;
+
+      return response()->json($infracciones,201);
+    }
+
     public function servicios($id)
     {
       // code...
@@ -181,12 +190,30 @@ class VehiculoController extends Controller
       return view('quaker.servicios',compact('servicios'));
     }
 
+    public function serviciosApi($id)
+    {
+      // code...
+      $vehiculo = Vehiculo::find($id);
+      $servicios = $vehiculo->serviciosMantenimientos;
+
+      return response()->json($servicios,201);
+    }
+
     public function usuario($id)
     {
       // code...
       $vehiculo = Vehiculo::find($id);
       $usuario = $vehiculo->usuario;
-      //return $usuario;
+
       return view('quaker.usuario',compact('usuario','vehiculo'));
+    }
+
+    public function usuarioApi($id)
+    {
+      // code...
+      $vehiculo = Vehiculo::find($id);
+      $usuario = $vehiculo->usuario;
+
+      return response()->json($usuario,201);
     }
 }

@@ -25,6 +25,30 @@ class MapsController extends Controller
       ]);
     }
 
+    public function lugares($lat, $lon,$type)
+    {
+      // code...
+      $places = $this->places($lat, $lon,$type);
+
+      $map = Mapper::map($lat,$lon,
+      ['zoom' => 15,'markers' =>['animation'=> 'DROP']]);
+
+      foreach ($places as $place) {
+        // code...
+        Mapper::informationWindow($place->location->lat,$place->location->lng,$place->name,['open' => true, 'maxWidth'=> 300, 'markers' => ['title' => $place->address]]);
+      }
+
+      return view('quaker.markers',compact('map'));
+    }
+
+    public function lugaresApi($lat, $lon,$type)
+    {
+      // code...
+      $places = $this->places($lat, $lon,$type);
+
+      return response()->json(['places' => $places],201);
+    }
+
     public function places($lat, $lon,$type)
     {
       // code...
@@ -49,17 +73,7 @@ class MapsController extends Controller
         array_push($places,$place);
       }
 
-      // $map = Mapper::map($lat,$lon,
-      // ['zoom' => 15,'markers' =>['animation'=> 'DROP']]);
-      //
-      // foreach ($places as $place) {
-      //   // code...
-      //   Mapper::informationWindow($place->location->lat,$place->location->lng,$place->name,['open' => true, 'maxWidth'=> 300, 'markers' => ['title' => $place->address]]);
-      // }
-      //
-      // return view('quaker.markers',compact('map'));
-
-      return response()->json(['places' => $places],200);
+      return $places;
     }
 
     public function index()

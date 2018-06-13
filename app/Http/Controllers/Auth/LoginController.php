@@ -54,4 +54,18 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
+
+    public function loginApi(Request $request){
+        $this->validateLogin($request);
+
+        if ($this->attemptLogin($request)) {
+            $user = $this->guard()->user();
+            $user->generateToken();
+
+            return response()->json(['data' => $user->toArray()],201);
+        }
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
 }

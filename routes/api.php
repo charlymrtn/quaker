@@ -13,11 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('ubicaciones','MapsController@index');
-
-Route::get('places/{lat}/{lon}/{type}','MapsController@places');
-
-
+Route::get('places/{lat}/{lon}/{type}','MapsController@lugaresApi');
 
 Route::get('noticias','NoticiasController@indexApi');
 Route::get('noticias/{id}','NoticiasController@showApi');
@@ -33,16 +29,22 @@ Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
   Route::get('vehiculo/{id}','VehiculoController@showApi');
   Route::post('vehiculo','VehiculoController@store');
   Route::put('vehiculo/{id}','VehiculoController@updateApi');
-  
-//    Route::resource('servicioMantenimiento', 'ServicioMantenimientoController');
-//    Route::resource('foto', 'FotoController');
-//    Route::resource('calidadAire', 'CalidadAireController');
-//    Route::get('/getFines/{plates}', 'API_Dependencies\DataVehiclesController@getFines');
-//    Route::get('/getHoldingInformation/{plates}', 'API_Dependencies\DataVehiclesController@getHoldingInformation');
-//    Route::get('/getAirQuality/{lat}/{long}', 'API_Dependencies\AirQualityController@getAirQuality');
-//    Route::resource('verificacion', 'VerificacionController');
-//    Route::resource('poliza', 'PolizaSeguroController');
+  Route::get('infracciones/{id}','VehiculoController@infraccionesApi');
+  Route::get('servicios/{id}','VehiculoController@serviciosApi');
+  Route::get('usuario/{id}','VehiculoController@usuarioApi');
+
+  Route::resource('servicioMantenimiento', 'ServicioMantenimientoController');
+  Route::resource('foto', 'FotoController');
+  Route::resource('calidadAire', 'CalidadAireController');
+
+  Route::get('/getFines/{plates}', 'API_Dependencies\DataVehiclesController@getFines');
+  Route::get('/getHoldingInformation/{plates}', 'API_Dependencies\DataVehiclesController@getHoldingInformation');
+  Route::get('/getAirQuality/{lat}/{long}', 'API_Dependencies\AirQualityController@getAirQuality');
+
+
+  Route::resource('verificacion', 'VerificacionController');
+  Route::resource('poliza', 'PolizaSeguroController');
 });
 
 Route::post('register', ['as' => 'register', 'uses' =>'Auth\RegisterController@register']);
-Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@loginApi']);

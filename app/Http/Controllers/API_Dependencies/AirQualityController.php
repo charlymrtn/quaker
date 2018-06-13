@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 class AirQualityController extends Controller {
 
+
     public function getAirQuality( $lat, $long ) {
 
        $curl = curl_init();

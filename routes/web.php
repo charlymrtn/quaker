@@ -15,11 +15,11 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-//Auth::routes();
-
-
 Auth::routes();
 Route::get('home', 'HomeController@index')->name('home');
+
+Route::get('places/{lat}/{lon}/{type}','MapsController@lugares');
+Route::get('ubicaciones','MapsController@index');
 
 Route::group(['middleware' => ['user']], function () {
   Route::resource('news', 'NoticiasController', ['except' => ['destroy']]);
@@ -34,5 +34,3 @@ Route::group(['middleware' => ['user']], function () {
 
   Route::get('maps/{id}/{vehiculo}','MapsController@map');
 });
-
-//Route::post('register1', 'Auth\RegisterController@register');
