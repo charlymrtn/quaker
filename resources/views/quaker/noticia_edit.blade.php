@@ -18,7 +18,7 @@
           @endisset
           >
           <div class="card-body">
-            <form method="POST" @isset($var)
+            <form method="POST" @isset($noticia)
               action="{{url('news')}}/{{$noticia->id}}"
             @else
               action="{{url('news')}}"
