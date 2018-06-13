@@ -7,18 +7,59 @@ use Mapper;
 use App\UltimoPinUbicacion as Ubicacion;
 use GuzzleHttp\Client;
 use stdClass;
+use Route;
 
 class MapsController extends Controller
 {
   const URL = 'https://maps.googleapis.com/maps/api/place/';
   const APIKEY = 'AIzaSyBJ1qOTxecheQysUBEmotbdCryIosNIa_Y';
   const TYPE = 'gas_station';
-  const RADIUS = 5000;
+  const RADIUS = 3000;
+
+  const LAT = '19.328704';
+  const LON = '-99.164989';
 
     public function __construct(){
       $this->client = new Client([
         'base_uri' => self::URL
       ]);
+    }
+
+    public function places($lat, $lon,$type)
+    {
+      // code...
+      $response = $this->client->request('GET','nearbysearch/json',['query' =>
+                                                ['location'=>$lat.','.$lon,
+                                                 'radius' => self::RADIUS,
+                                                 'type' => $type,
+                                                 'key' => self::APIKEY]]);
+
+      $respuesta = json_decode($response->getBody());
+
+      $places = array();
+
+      foreach ($respuesta->results as $lugar) {
+        // code...
+        $place = new stdClass;
+        $place->id = $lugar->place_id;
+        $place->location = $lugar->geometry->location;
+        $place->name =  $lugar->name;
+        $place->address = $lugar->vicinity;
+
+        array_push($places,$place);
+      }
+
+      $map = Mapper::map($lat,$lon,
+      ['zoom' => 15,'markers' =>['animation'=> 'DROP']]);
+
+      foreach ($places as $place) {
+        // code...
+        Mapper::informationWindow($place->location->lat,$place->location->lng,$place->name,['open' => true, 'maxWidth'=> 300, 'markers' => ['title' => $place->address]]);
+      }
+
+      return view('quaker.markers',compact('map'));
+
+      //return response()->json(['places' => $places],200);
     }
 
     public function index()
@@ -41,9 +82,6 @@ class MapsController extends Controller
                                                  'type' => self::TYPE,
                                                  'key' => self::APIKEY]
                                               ]);
-      //$torneos = json_decode($response->getBody());
-
-      //return $response;
 
       $map = Mapper::map($location->latitude,$location->longitude,
       ['zoom' => 14,'markers' =>['animation'=> 'DROP']]);
@@ -52,14 +90,6 @@ class MapsController extends Controller
         // code...
         Mapper::informationWindow($location[0],$location[1],$location[2],['open' => true, 'maxWidth'=> 300, 'markers' => ['title' => $location[2]]]);
       }
-
-      // Mapper::informationWindow($locations[1][0], $locations[1][1], $locations[1][2],['open' => true, 'maxWidth'=> 300, 'markers' => ['title' => 'Title']]);
-      //$map = Mapper::map(52.381128999999990000, 0.470085000000040000);
-
-      //Mapper::circle([['latitude' => 53.381128999999990000, 'longitude' => -1.470085000000040000]], ['editable' => 'true']);
-      //Mapper::rectangle([['latitude' => 53.381128999999990000, 'longitude' => -1.470085000000040000], ['latitude' => 52.381128999999990000, 'longitude' => 0.470085000000040000]], ['editable' => 'true']);
-      //Mapper::polygon([['latitude' => 53.381128999999990000, 'longitude' => -1.470085000000040000], ['latitude' => 52.381128999999990000, 'longitude' => 0.470085000000040000]], ['editable' => 'true']);
-      //Mapper::polyline([['latitude' => 53.381128999999990000, 'longitude' => -1.470085000000040000], ['latitude' => 52.381128999999990000, 'longitude' => 0.470085000000040000]], ['editable' => 'true']);
 
       return view('quaker.markers',compact('map'));
     }

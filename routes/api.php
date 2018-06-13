@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 Route::get('ubicaciones','MapsController@index');
 
+Route::get('places/{lat}/{lon}/{type}','MapsController@places');
+
 // Route::resource('noticias', 'NoticiasController');
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
