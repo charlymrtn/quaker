@@ -21,6 +21,12 @@ class NoticiasController extends Controller
         //return response()->json($noticias);
     }
 
+    public function indexApi()
+    {
+        $noticias = Noticia::orderBy('id', 'DESC')->get();
+        return response()->json($noticias,201);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -29,9 +35,33 @@ class NoticiasController extends Controller
      */
     public function store(Request $request)
     {
-      if ($request->hasFile('imagen')) {
 
-      }
+        $noticia = $this->storeCommon($request);
+
+        if($noticia){
+
+            return view('quaker.noticia',compact('noticia'));
+            //return response()->json($insert, 201);
+        }else{
+          return response()->json($noticia->errors()->all());
+        }
+    }
+
+    public function storeApi(Request $request)
+    {
+
+        $noticia = $this->storeCommon($request);
+
+        if($noticia){
+            return response()->json($noticia, 201);
+
+        }else{
+          return response()->json($noticia->errors()->all());
+        }
+    }
+
+    public function storeCommon(Request $request)
+    {
 
         $noticia = Noticia::create([
                   'titulo' => $request->title,
@@ -49,10 +79,10 @@ class NoticiasController extends Controller
             $noticia->imagen = $notiRuta;
             $noticia->save();
           }
-            return view('quaker.noticia',compact('noticia'));
+            return $noticia;
             //return response()->json($insert, 201);
         }else{
-          return response()->json($insert->errors()->all());
+          return response()->json($noticia->errors()->all());
         }
     }
 
@@ -69,7 +99,18 @@ class NoticiasController extends Controller
             return view('quaker.noticia',compact('noticia'));
             //return response()->json($noticia);
         } else {
-            return response()->json("No se encontro ningun resultado con el id proporcionado", 200);
+            return response()->json("No se encontro ningun resultado con el id proporcionado", 500);
+        }
+
+    }
+
+    public function showApi($id)
+    {
+        $noticia = Noticia::find($id);
+        if (!empty($noticia)) {
+            return response()->json($noticia,201);
+        } else {
+            return response()->json("No se encontro ningun resultado con el id proporcionado", 500);
         }
 
     }
@@ -80,9 +121,8 @@ class NoticiasController extends Controller
       $noticia =Noticia::find($id);
       if (!empty($noticia)) {
           return view('quaker.noticia_edit',compact('noticia'));
-          //return response()->json($noticia);
       } else {
-          return response()->json("No se encontro ningun resultado con el id proporcionado", 200);
+          return response()->json("No se encontro ningun resultado con el id proporcionado", 500);
       }
 
     }
@@ -101,6 +141,13 @@ class NoticiasController extends Controller
       return redirect('news');;
     }
 
+    public function destroyApi($id)
+    {
+      // code...
+      Noticia::destroy($id);
+      return response()->json('La noticia fue eliminada',201);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -109,6 +156,28 @@ class NoticiasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+    {
+          $update = $this->updateCommon($request, $id);
+
+        if($update){
+            return redirect('news/'.$update->id);
+        } else {
+            return response()->json($update->errors()->all());
+        }
+    }
+
+    public function updateApi(Request $request, $id)
+    {
+        $update = $this->updateCommon($request, $id);
+
+        if($update){
+            return response()->json($update, 201);
+        } else {
+            return response()->json($update->errors()->all());
+        }
+    }
+
+    public function updateCommon(Request $request, $id)
     {
         $update =Noticia::find($id);
 
@@ -122,7 +191,6 @@ class NoticiasController extends Controller
           $notiRuta = '/images/catalog/'. $imageName;
         }
 
-        $update =Noticia::find($id);
         $update->titulo =$request->title;
         $update->contenido =$request->contenido;
         if (isset($notiRuta)) {
@@ -133,8 +201,7 @@ class NoticiasController extends Controller
         $update->save();
 
         if($update){
-            //return response()->json($update, 201);
-            return redirect('news/'.$update->id);
+            return $update;
         } else {
             return response()->json($update->errors()->all());
         }

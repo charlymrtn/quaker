@@ -17,12 +17,23 @@ Route::get('ubicaciones','MapsController@index');
 
 Route::get('places/{lat}/{lon}/{type}','MapsController@places');
 
-// Route::resource('noticias', 'NoticiasController');
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-// });
-// Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
-//    Route::resource('vehiculo', 'VehiculoController');
+
+
+Route::get('noticias','NoticiasController@indexApi');
+Route::get('noticias/{id}','NoticiasController@showApi');
+Route::post('noticias','NoticiasController@storeApi');
+Route::put('noticias/{id}','NoticiasController@updateApi');
+Route::get('noticias/delete/{id}','NoticiasController@destroyApi');
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+   return $request->user();
+});
+Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
+  Route::get('vehiculo','VehiculoController@indexApi');
+  Route::get('vehiculo/{id}','VehiculoController@showApi');
+  Route::post('vehiculo','VehiculoController@store');
+  Route::put('vehiculo/{id}','VehiculoController@updateApi');
+  
 //    Route::resource('servicioMantenimiento', 'ServicioMantenimientoController');
 //    Route::resource('foto', 'FotoController');
 //    Route::resource('calidadAire', 'CalidadAireController');
@@ -31,16 +42,7 @@ Route::get('places/{lat}/{lon}/{type}','MapsController@places');
 //    Route::get('/getAirQuality/{lat}/{long}', 'API_Dependencies\AirQualityController@getAirQuality');
 //    Route::resource('verificacion', 'VerificacionController');
 //    Route::resource('poliza', 'PolizaSeguroController');
-// });
-// //Auth::routes();
-// //Route::get('agrega', ['as' => 'agrega', 'uses' => '']);
-//
-// Route::post('register', ['as' => 'register', 'uses' =>'Auth\RegisterController@register']);
-// Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
-//
-//
-// Route::group(['middleware' => ['auth:api']], function() {
-//
-//    //Route::get('/getAirQuality/{lat}/{long}', 'TestController@getAirQuality');
-//
-// });
+});
+
+Route::post('register', ['as' => 'register', 'uses' =>'Auth\RegisterController@register']);
+Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);

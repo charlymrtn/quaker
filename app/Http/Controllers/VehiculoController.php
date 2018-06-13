@@ -18,11 +18,13 @@ class VehiculoController extends Controller
     public function index()
     {
       $vehiculos  = Vehiculo::paginate(4);
-      //return $vehiculos;
       return view ('quaker.vehiculos',compact('vehiculos'));
-        // return response()->json(
-        //     Vehiculo::all()
-        // );
+    }
+
+    public function indexApi()
+    {
+
+        return response()->json(Vehiculo::all(),200);
     }
 
     /**
@@ -77,6 +79,14 @@ class VehiculoController extends Controller
 
     }
 
+    public function showApi($id)
+    {
+        $vehiculo = Vehiculo::find($id);
+
+        return response()->json($vehiculo,201);
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,15 +108,7 @@ class VehiculoController extends Controller
     public function update(Request $request, $id)
     {
 
-        $update = Vehiculo::find($id);
-
-        $update->alias = $request->alias;
-        $update->placas = $request->placas;
-        $update->estado = $request->estado;
-        $update->anio = $request->anio;
-        $update->ctlg_modelos_id_ctlg_modelos = $request->modelo;
-
-        $update->save();
+        $update = $this->updateCommon($request,$id);
 
         if ($update) {
           // code...
@@ -114,6 +116,37 @@ class VehiculoController extends Controller
           //return response()->json($update, 201);
 
         }
+    }
+
+    public function updateApi(Request $request, $id)
+    {
+
+        $update = $this->updateCommon($request,$id);
+
+        if ($update) {
+          // code...
+          return response()->json($update, 201);
+
+        }
+    }
+
+    public function updateCommon(Request $request, $id)
+    {
+      // code...
+      $update = Vehiculo::find($id);
+
+      $update->alias = $request->alias;
+      $update->placas = $request->placas;
+      $update->estado = $request->estado;
+      $update->anio = $request->anio;
+      $update->ctlg_modelos_id_ctlg_modelos = $request->modelo;
+
+      $update->save();
+
+      if ($update) {
+        // code...
+        return $update;
+      }
     }
 
     /**
