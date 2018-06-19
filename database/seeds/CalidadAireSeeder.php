@@ -17,7 +17,7 @@ class CalidadAireSeeder extends Seeder
         $faker = Faker::create();
         for ($x = 0; $x < 10; $x++) {
             DB::table('calidad_aire')->insert([
-                'aqs' => $faker->text(50),
+                'aqs' => $faker->numberBetween(20,150),
                 'usuario_id_usuario'=> rand(1, 10),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,

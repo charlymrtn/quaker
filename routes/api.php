@@ -15,11 +15,13 @@ use Illuminate\Http\Request;
 
 Route::get('places/{lat}/{lon}/{type}','MapsController@lugaresApi');
 
-Route::get('noticias','NoticiasController@indexApi');
-Route::get('noticias/{id}','NoticiasController@showApi');
-Route::post('noticias','NoticiasController@storeApi');
-Route::put('noticias/{id}','NoticiasController@updateApi');
-Route::get('noticias/delete/{id}','NoticiasController@destroyApi');
+Route::group(['prefix' => 'quaker'], function() {
+  Route::get('noticias','NoticiasController@indexApi');
+  Route::get('noticias/{id}','NoticiasController@showApi');
+  Route::post('noticias','NoticiasController@storeApi');
+  Route::put('noticias/{id}','NoticiasController@updateApi');
+  Route::get('noticias/delete/{id}','NoticiasController@destroyApi');
+});
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
    return $request->user();
