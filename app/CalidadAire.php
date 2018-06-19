@@ -36,9 +36,9 @@ class CalidadAire extends Model
         'created_at',
         'updated_at',
     ];
-    
+
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Usuario::class,'usuario_id_usuario');
     }
 }

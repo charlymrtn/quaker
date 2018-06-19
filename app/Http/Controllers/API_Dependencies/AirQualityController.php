@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API_Dependencies;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use stdClass;
 
 
 class AirQualityController extends Controller {
@@ -21,10 +22,13 @@ class AirQualityController extends Controller {
         $resp = curl_exec($curl);
         curl_close($curl);
         $resp = json_decode($resp);
-        header('Content-Type: application/json');
-        return response() -> json([
-            'status' => $resp->status,
-            'data' => ['aqi' => $resp->data->aqi ]], 201);
+
+        $response = new stdClass;
+
+        $response->status = $resp->status;
+        $response->aqi = $resp->data->aqi;
+
+        return response()->json($response,201);
 
     }
 

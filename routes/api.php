@@ -24,7 +24,8 @@ Route::get('noticias/delete/{id}','NoticiasController@destroyApi');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
    return $request->user();
 });
-Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
+//Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
+Route::group(['prefix' => 'quaker'], function() {
   Route::get('vehiculo','VehiculoController@indexApi');
   Route::get('vehiculo/{id}','VehiculoController@showApi');
   Route::post('vehiculo','VehiculoController@store');

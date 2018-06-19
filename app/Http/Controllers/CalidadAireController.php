@@ -59,18 +59,21 @@ class CalidadAireController extends Controller
      */
     public function show($id)
     {
-        return response()->json(
-            $CalidadAire = DB::table('calidad_aire')
-            ->join('users', 'users.id_usuario', '=', 'calidad_aire.usuario_id_usuario')
-            ->select(
-                'calidad_aire.aqs', 
-                'users.nombre',
-                'calidad_aire.created_at', 
-                'calidad_aire.updated_at'
-            )
-            ->where('id_calidad_aire', $id)
-            ->first()
-        );
+        $calidadAire = CalidadAire::where('usuario_id_usuario',$id)->get();
+
+        return response()->json($calidadAire,200);
+        // return response()->json(
+        //     $CalidadAire = DB::table('calidad_aire')
+        //     ->join('users', 'users.id_usuario', '=', 'calidad_aire.usuario_id_usuario')
+        //     ->select(
+        //         'calidad_aire.aqs',
+        //         'users.nombre',
+        //         'calidad_aire.created_at',
+        //         'calidad_aire.updated_at'
+        //     )
+        //     ->where('id_calidad_aire', $id)
+        //     ->first()
+        // );
     }
 
     /**
