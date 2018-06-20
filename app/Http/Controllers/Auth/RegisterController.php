@@ -66,7 +66,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $faker = Faker::create();
-        
+
         return Usuario::create([
             'nombre' => $data['name'],
             'email' => $data['email'],
@@ -80,6 +80,7 @@ class RegisterController extends Controller
     {
         $user->generateToken();
 
-        return view('home');
+        return response()->json($user,201);
+        //return view('home');
     }
 }
