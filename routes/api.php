@@ -28,12 +28,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //Route::group(['prefix' => 'quaker', 'middleware' => 'auth:api'], function() {
 Route::group(['prefix' => 'quaker'], function() {
+
   Route::get('vehiculo','VehiculoController@indexApi');
   Route::get('vehiculo/{id}','VehiculoController@showApi');
   Route::post('vehiculo','VehiculoController@store');
   Route::put('vehiculo/{id}','VehiculoController@updateApi');
+  Route::post('vehiculo/add-many/{token}','VehiculoController@storeMany');
+
   Route::get('infracciones/{id}','VehiculoController@infraccionesApi');
   Route::get('servicios/{id}','VehiculoController@serviciosApi');
+  Route::get('verificaciones/{id}','VehiculoController@verificacionesApi');
   Route::get('usuario/{id}','VehiculoController@usuarioApi');
 
   Route::resource('servicioMantenimiento', 'ServicioMantenimientoController');

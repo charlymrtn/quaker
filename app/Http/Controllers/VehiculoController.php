@@ -37,6 +37,12 @@ class VehiculoController extends Controller
         //
     }
 
+    public function storeMany(Request $request, $token)
+    {
+      // code...
+      return $token;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -197,6 +203,15 @@ class VehiculoController extends Controller
       $servicios = $vehiculo->serviciosMantenimientos;
 
       return response()->json($servicios,201);
+    }
+
+    public function verificacionesApi($id)
+    {
+      // code...
+      $vehiculo = Vehiculo::find($id);
+      $verificaciones = $vehiculo->verificaciones;
+
+      return response()->json($verificaciones,201);
     }
 
     public function usuario($id)

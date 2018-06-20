@@ -55,7 +55,7 @@ class Vehiculo extends Model
     }
     public function verificaciones()
     {
-        return $this->hasMany(Verificacion::class);
+        return $this->hasMany(Verificacion::class,'vehiculo_id_vehiculo');
     }
     public function polizaSeguro()
     {
