@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Faker\Factory as Faker;
+//use Faker\Factory as Faker;
 
 class RegisterController extends Controller
 {
@@ -65,14 +65,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $faker = Faker::create();
+        //$faker = Faker::create();
 
         return Usuario::create([
             'nombre' => $data['name'],
             'email' => $data['email'],
             'status' => true,
             'api_token' => str_random(60),
-            'url_imagen' => $faker->imageUrl('person'),
+            //'url_imagen' => $faker->imageUrl('person'),
+            'url_imagen' => 'https://picsum.photos/200/300',
             'password' => Hash::make($data['password']),
         ]);
     }
