@@ -24,7 +24,15 @@ class NoticiasController extends Controller
     public function indexApi()
     {
         $noticias = Noticia::orderBy('id', 'DESC')->get();
-        return response()->json($noticias,201);
+        $news = array();
+        foreach ($noticias as $noticia) {
+          // code...
+          $new = new stdClass;
+          $new = $noticia;
+          $new->fecha = strtotime($noticia->created_at);
+          array_push($news,$new);
+        }
+        return response()->json($news,201);
     }
 
     /**
