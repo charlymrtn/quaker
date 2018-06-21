@@ -38,10 +38,10 @@ class VehiculoController extends Controller
         //
     }
 
-    public function storeMany(Request $request, $token)
+    public function storeMany(Request $request)
     {
       // code...
-      return $token;
+      return response()->json($request->input(),201);
     }
 
     /**

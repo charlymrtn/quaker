@@ -22,8 +22,8 @@ class VehiculoSeeder extends Seeder
                 'estado'=>$faker->name,
                 'anio'=>rand(1970,2018),
                 'usuario_id_usuario'=> rand(1, 10),
-                'ctlg_modelos_id_ctlg_modelos'=> rand(1, 10),
-                'ctlg_hologramas_id_ctlg_hologramas'=> rand(1, 10),
+                'ctlg_modelos_id_ctlg_modelos'=> rand(1, 21),
+                'ctlg_hologramas_id_ctlg_hologramas'=> rand(1, 4),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);

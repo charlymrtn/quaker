@@ -15,12 +15,25 @@ class CtlgHologramasSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($x = 1; $x < 11; $x++) {
             DB::table('ctlg_hologramas')->insert([
-                'holograma' => md5($faker->text(10)),
+                'holograma' => '00',
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);
-        }
+            DB::table('ctlg_hologramas')->insert([
+                'holograma' => '0',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
+            DB::table('ctlg_hologramas')->insert([
+                'holograma' => '1',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
+            DB::table('ctlg_hologramas')->insert([
+                'holograma' => '2',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
     }
 }

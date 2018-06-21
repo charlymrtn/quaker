@@ -15,12 +15,41 @@ class CtlgMarcasSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($x = 1; $x < 11; $x++) {
-            DB::table('ctlg_marcas')->insert([
-                'marca' => $faker->company,
+
+        DB::table('ctlg_marcas')->insert([
+                'marca' => 'Ford',
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);
-        }
+        DB::table('ctlg_marcas')->insert([
+                'marca' => 'Honda',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
+        DB::table('ctlg_marcas')->insert([
+                'marca' => 'Chrysler',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
+        DB::table('ctlg_marcas')->insert([
+                'marca' => 'Chevrolet',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
+        DB::table('ctlg_marcas')->insert([
+                'marca' => 'Nissan',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
+        DB::table('ctlg_marcas')->insert([
+                'marca' => 'Volkswagen',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
+        DB::table('ctlg_marcas')->insert([
+                'marca' => 'Toyota',
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
     }
 }
