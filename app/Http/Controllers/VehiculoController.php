@@ -7,6 +7,7 @@ use App\Vehiculo;
 use App\CtlgModelos as Modelo;
 use Auth;
 use DB;
+use stdClass;
 
 class VehiculoController extends Controller
 {
@@ -183,8 +184,17 @@ class VehiculoController extends Controller
       // code...
       $vehiculo = Vehiculo::find($id);
       $infracciones = $vehiculo->infracciones;
+      $verisOut = array();
 
-      return response()->json($infracciones,201);
+      foreach ($infracciones as $veri) {
+        // code...
+        $new = new stdClass;
+        $new = $veri;
+        $new->fecha_millis = strtotime($veri->fecha);
+        array_push($verisOut,$new);
+      }
+
+      return response()->json($verisOut,201);
     }
 
     public function servicios($id)
@@ -201,8 +211,17 @@ class VehiculoController extends Controller
       // code...
       $vehiculo = Vehiculo::find($id);
       $servicios = $vehiculo->serviciosMantenimientos;
+      $verisOut = array();
 
-      return response()->json($servicios,201);
+      foreach ($servicios as $veri) {
+        // code...
+        $new = new stdClass;
+        $new = $veri;
+        $new->fecha_millis = strtotime($veri->fecha_servicio);
+        array_push($verisOut,$new);
+      }
+
+      return response()->json($verisOut,201);
     }
 
     public function verificacionesApi($id)
@@ -210,8 +229,17 @@ class VehiculoController extends Controller
       // code...
       $vehiculo = Vehiculo::find($id);
       $verificaciones = $vehiculo->verificaciones;
+      $verisOut = array();
 
-      return response()->json($verificaciones,201);
+      foreach ($verificaciones as $veri) {
+        // code...
+        $new = new stdClass;
+        $new = $veri;
+        $new->fecha_millis = strtotime($veri->fecha_verificacion);
+        array_push($verisOut,$new);
+      }
+
+      return response()->json($verisOut,201);
     }
 
     public function usuario($id)

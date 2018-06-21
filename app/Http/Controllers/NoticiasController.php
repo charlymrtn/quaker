@@ -29,7 +29,7 @@ class NoticiasController extends Controller
           // code...
           $new = new stdClass;
           $new = $noticia;
-          $new->fecha = strtotime($noticia->created_at);
+          $new->fecha_millis = strtotime($noticia->created_at);
           array_push($news,$new);
         }
         return response()->json($news,201);

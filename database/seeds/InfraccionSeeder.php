@@ -18,7 +18,7 @@ class InfraccionSeeder extends Seeder
         for ($x = 1; $x < 11; $x++) {
             DB::table('infracciones')->insert([
                 'folio' => md5($faker->postcode),
-                'fecha'=>$faker->time(),
+                'fecha'=>$faker->date(),
                 'descripcion'=>$faker->text(20),
                 'situacion'=>$faker->text(20),
                 'fundamento'=>$faker->text(50),

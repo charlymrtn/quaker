@@ -15,7 +15,7 @@ class CreateInfraccionesTable extends Migration {
 			$table->increments('id_infraccion');
 			$table->string('folio');
 			//$table->primary('folio');
-			$table->time('fecha');
+			$table->date('fecha');
 			$table->text('descripcion');
 			$table->string('situacion');
 			$table->string('fundamento');
