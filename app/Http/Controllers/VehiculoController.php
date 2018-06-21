@@ -38,12 +38,6 @@ class VehiculoController extends Controller
         //
     }
 
-    public function storeMany(Request $request)
-    {
-      // code...
-      return response()->json($request->input(),201);
-    }
-
     /**
      * Store a newly created resource in storage.
      *

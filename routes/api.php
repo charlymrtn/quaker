@@ -34,7 +34,7 @@ Route::group(['prefix' => 'quaker'], function() {
   Route::post('vehiculo','VehiculoController@store');
   Route::put('vehiculo/{id}','VehiculoController@updateApi');
 
-  Route::post('vehiculo/add-many','VehiculoController@storeMany');
+  Route::post('vehiculo/add-many','API_Dependencies\ApiController@storeMany');
 
   Route::get('hologramas','API_Dependencies\ApiController@hologramas');
   Route::get('marcas','API_Dependencies\ApiController@marcas');
